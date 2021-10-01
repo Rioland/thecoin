@@ -713,5 +713,14 @@ self::send_mail($email, $mess, $sub);
         return $qrcode;
 
     }
+    public static function subscribe($pid){
+        $stm=Database::getConn()->prepare("SELECT * FROM `plans` WHERE `sn`=:pid");
+        $stm->bindParam(":pid",$pid);
+        $stm->execute();
+        if($stm->rowCount()>0){
+            $_SESSION['newplans']=$stm->fetch();
+        }
+        echo  $_SESSION['newplans'];
+    }
 
 }

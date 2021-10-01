@@ -77,14 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         }
     }
-    // $response = Database::register($email, $pass, $fname);
-    // if ($response == "true") {
-    //     header("location:signin");
-    // } else {
-    //     $_SESSION['message'] = $response;
-    //     header("location:signup");
-
-    // }
+  
 
     // pages
     if (isset($_REQUEST['page']) and !empty($_REQUEST['page'])) {
@@ -102,5 +95,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo json_encode(array("code" => 200, "price" => $price), true);
 
     }
+    if (isset($_REQUEST['planid']) and !empty($_REQUEST['planid'])) {
+    $_SESSION['page'] = $_REQUEST['page'];
+    $_SESSION['title'] = $_REQUEST['title'];
+    $id=$_REQUEST['planid'];
+    echo json_encode(array("code" => 200, "message" => "set"));
+}
+
 
 }

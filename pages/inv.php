@@ -326,7 +326,7 @@ if($stm->rowCount()>0){
                        page:"pages/chplan.php",
                        title:"plans"
                    },
-                   dataType: "dataType",
+                   dataType: "json",
                    success: function (response) {
                        window.location.reload();
                    }
