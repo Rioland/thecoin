@@ -55,6 +55,27 @@ class Database
         return $country;
 
     }
+
+    public static function satochToBtc($satoshi){
+     return ($satoshi*0.00000001);
+    }
+
+    public static function updateAccout($colum, $value)
+    {
+        $qry = "UPDATE `account` SET $colum=:val WHERE `id`=:id";
+        $stm = self::getConn()->prepare($qry);
+        $stm->bindParam(":val", $value);
+        $stm->bindParam(":id", $id);
+        $stm->execute();
+        if ($stm->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+
+        }
+
+    }
+
     public static function createInvoice($amt, $address)
     {
         try {
@@ -612,9 +633,82 @@ class Database
 
     }
 
+    public static function btc_tras_update1($status, $value, $txid, $addr)
+    {
+        try {
+
+            $myconn = self::getConn();
+            $qury = "INSERT INTO `payments_trasact`(`txid`, `addr`, `value`, `status`, `mid`)
+             VALUES (:txid,:addr,:value,:status,:mid)";
+            $id = $_SESSION["userid"];
+
+            $stm = $myconn->prepare($qury);
+            $stm->bindParam('status', $status);
+            $stm->bindParam('value', $value);
+            $stm->bindParam('txid', $txid);
+            $stm->bindParam('addr', $addr);
+            $stm->bindParam('mid', $id);
+
+            $stm->execute();
+            if ($status == '2' or $status == 2) {
+                $amount = self::USDtoBTC($value);
+                $qury = "UPDATE account SET `bit`=`bit`+$amount WHERE `id`=$id";
+                $stm = $myconn->prepare($qury);
+                $stm->execute();
+                return "success";
+            }
+            return "Transaction in processing";
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+    }
+
+    public static function btc_tras_update($res)
+    {
+        try {
+
+            $myconn = self::getConn();
+            $qury = "INSERT INTO `btc_transaction`(`status`, `emailid`, `satoshi`, `description`, `xpub`, `timestamp`, `uuid`, `value`, `txid`,
+    `currency`, `code`, `address`, `paid_satoshi`,`myid`)
+    VALUES (:status,:emailid,:satoshi,:description,:xpub,:timestamp,:uuid,:value,:txid,:currency,:code,:address,:paid_satoshi,:myid)";
+            $id = $_SESSION["userid"];
+            $stm = $myconn->prepare($qury);
+            $stm->bindParam('status', $res['status']);
+            $stm->bindParam('emailid', $res['emailid']);
+            $stm->bindParam('satoshi', $res['satoshi']);
+            $stm->bindParam('description', $res['description']);
+            $stm->bindParam('xpub', $res['xpub']);
+            $stm->bindParam('timestamp', $res['timestamp']);
+            $stm->bindParam('uuid', $res['uuid']);
+            $stm->bindParam('value', $res['value']);
+            $stm->bindParam('txid', $res['txid']);
+            $stm->bindParam('currency', $res['currency']);
+            $stm->bindParam('code', $res['code']);
+            $stm->bindParam('paid_satoshi', $res['paid_satoshi']);
+            $stm->bindParam('address', $res['address']);
+            $stm->bindParam('myid', $id);
+
+            $stm->execute();
+            if ($res['status'] == '2' or $res['status'] == 2) {
+                $amount = self::USDtoBTC($res['value']);
+                $qury = "UPDATE account SET `bit`=`bit`+$amount WHERE `id`=$id";
+                $stm = $myconn->prepare($qury);
+                $stm->execute();
+                return "success";
+            }
+            return "Transaction in processing";
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+    }
+
     public static function generateAddress()
     {
-       $address="";
+        $address = "";
         $api_key = self::getApiPrivate('block') ?? "6NRYdE4XdqnERd0heOsHl3Yda4gdUKQ8fL2jAJOuSx8";
         $url = 'https://www.blockonomics.co/api/new_address?reset=1';
 
@@ -639,9 +733,9 @@ class Database
         curl_close($ch);
 
         if ($status == 200) {
-            $address= $responseObj->address;
+            $address = $responseObj->address;
         } else {
-            $address= "ERROR: " . $status . ' ' . $responseObj->message;
+            $address = "ERROR: " . $status . ' ' . $responseObj->message;
         }
         return $address;
 
@@ -699,6 +793,30 @@ class Database
         }
 
         return $ip;
+
+    }
+
+    public static function getBTCTransaction($tid)
+    {
+
+        $url = "https://www.blockonomics.co/api/tx_detail?txid=" . $tid;
+
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        $headers = array(
+            "X-Custom-Header: value",
+            "Content-Type: application/json",
+        );
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+//for debug only!
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+        $resp = curl_exec($curl);
+        curl_close($curl);
+        return $resp;
 
     }
 
