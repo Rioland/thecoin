@@ -192,7 +192,7 @@ class Database
         return $status;
     }
 
-    public static function is_login():bool
+    public static function is_login(): bool
     {
 
         if (isset($_SESSION["user"]) and !empty($_SESSION["user"]) and isset($_SESSION['userid']) and !empty($_SESSION['userid'])) {
@@ -519,7 +519,7 @@ class Database
             //  $stm->execute(array(":email" => $email, ":password" => md5($pass), ":country" => $country, ":token" => $token, ":id" => $id, ":name" => $name,":pic"=>$pic,":ph"=>$ph));
 
             $qury1 = "INSERT INTO `account`(`id`, `balance`, `investment`, `earns`, `withdraw`,`referer`)
-            VALUES (:uid,:bal,:investment,:earns,:withdraw,:referer)";
+            VALUES (:id,:bal,:investment,:earns,:withdraw,:referer)";
 
             $stm1 = $myconn->prepare($qury1);
             $balance = "0";
@@ -527,7 +527,7 @@ class Database
             $earns = "0";
             $referer = "0";
             $withdraw = "0";
-            $stm1->bindParam(":uid", $id);
+            $stm1->bindParam(":id", $id);
             $stm1->bindParam(":bal", $balance);
             $stm1->bindParam(":investment", $investment);
             $stm1->bindParam(":earns", $earns);
@@ -614,30 +614,34 @@ class Database
 
     public static function generateAddress()
     {
+       $address="";
+        $api_key = self::getApiPrivate('block') ?? "6NRYdE4XdqnERd0heOsHl3Yda4gdUKQ8fL2jAJOuSx8";
+        // $url = 'https://www.blockonomics.co/api/new_address?reset=1';
 
-        $apikey = self::getApiPrivate('block') ?? "6NRYdE4XdqnERd0heOsHl3Yda4gdUKQ8fL2jAJOuSx8";
-        $url = "https://www.blockonomics.co/api/";
+        $ch = curl_init();
 
-        $options = array(
-            'http' => array(
-                'header' => 'Authorization: Bearer ' . $apikey,
-                'mwithdrawod' => 'POST',
-                'content' => '',
-                'ignore_errors' => true,
-            ),
-        );
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 
-        $context = stream_context_create($options);
-        $contents = file_get_contents($url . "new_address?reset=1", false, $context);
-        $object = json_decode($contents);
+        $header = "Authorization: Bearer " . $api_key;
+        $headers = array();
+        $headers[] = $header;
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-// Check if address was generated successfully
-        if (isset($object->address)) {
+        $contents = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo "Error:" . curl_error($ch);
+        }
 
-            $address = $object->address;
-            // $_SESSION["btc_address"] = $address;
+        $responseObj = json_decode($contents);
+        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        if ($status == 200) {
+            $address= $responseObj->address;
         } else {
-            return $object;
+            $address= "ERROR: " . $status . ' ' . $responseObj->message;
         }
         return $address;
 
