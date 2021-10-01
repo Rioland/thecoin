@@ -48,14 +48,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (in_array($file_exe, $fileAllow)) {
                 $dest = "uploadimageF/" . $filename;
                 if (move_uploaded_file($file['tmp_name'], $dest)) {
-                     $response = Database::register($email, $pass, $fname,$phone,$filename);
-                      if ($response == "true") {
-        header("location:signin");
-    } else {
-        $_SESSION['message'] = $response;
-        header("location:signup");
+                    $response = Database::register($email, $pass, $fname, $phone, $filename);
+                    if ($response == "true") {
+                        header("location:signin");
+                    } else {
+                        $_SESSION['message'] = $response;
+                        header("location:signup");
 
-    }
+                    }
                 } else {
                     $_SESSION['message'] = "file not moved";
 
