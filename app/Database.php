@@ -487,7 +487,7 @@ self::send_mail($email, $mess, $sub);
 
     }
 
-    public static function register($email, $pass, $name): string
+    public static function register($email, $pass, $name,$ph,$pic): string
     {
         $_SESSION["dbroot"] = __DIR__;
         $country = self::ip_visitor_country();
@@ -503,9 +503,9 @@ self::send_mail($email, $mess, $sub);
 
             $id = str_shuffle(time());
             $token = self::generate_token();
-            $qury = "INSERT INTO `users`(`email`, `password`, `country`,`auth_token`,`id`,`name`) VALUES (:email,:password,:country,:token,:id,:name)";
+            $qury = "INSERT INTO `users`(`email`, `password`, `country`,`auth_token`,`id`,`name`,`picture`,`phone`) VALUES (:email,:password,:country,:token,:id,:name,:pic,:ph)";
             $stm = $myconn->prepare($qury);
-            $feildback = $stm->execute(array(":email" => $email, ":password" => md5($pass), ":country" => $country, ":token" => $token, ":id" => $id, ":name" => $name));
+            $feildback = $stm->execute(array(":email" => $email, ":password" => md5($pass), ":country" => $country, ":token" => $token, ":id" => $id, ":name" => $name,":pic"=>$pic,":ph"=>$ph));
 
             $qury1 = "INSERT INTO `account`(`id`, `balance`, `investment`, `earns`, `withdraw`,`referer`)
             VALUES (:uid,:bal,:investment,:earns,:withdraw,:referer)";

@@ -1,3 +1,7 @@
+
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +10,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="fontawesome-free-5.15.1-web/css/all.css">
     <title>Login Page</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  
 </head>
 <body>
     <center>
@@ -79,11 +85,11 @@
                                                 <div class="nav__dropdown-content">
                                                     <a href="" class="nav__dropdown-item">My Account</a>
                                                     <hr>
-                                                    <a href="#" class="nav__dropdown-item">Login</a>
+                                                    <a href="signin" class="nav__dropdown-item">Login</a>
                                                     <hr>
-                                                    <a href="#" class="nav__dropdown-item">Register</a>
+                                                    <a href="signup" class="nav__dropdown-item">Register</a>
                                                     <hr>
-                                                    <a href="#" class="nav__dropdown-item">Forgot Password</a>
+                                                    <a href="forgetpassword" class="nav__dropdown-item">Forgot Password</a>
                                                     <hr>
                                                 </div>
                                             </div>
@@ -98,7 +104,7 @@
         
                                             <div class="nav__dropdown-collapse">
                                                 <div class="nav__dropdown-content">
-                                                    <a href="#" class="nav__dropdown-item"> About Us</a>
+                                                    <a href="about" class="nav__dropdown-item"> About Us</a>
                                                     <hr>
                                                     <a href="#" class="nav__dropdown-item">Testimonials</a>
                                                     <hr>
@@ -148,7 +154,7 @@
                 <div class="logup">
                     <h3>WELCOME!. <small>Kindly login.</small></h3>
                 </div>
-                <form action="./loginh.php" method="post">
+                <form action="handler" method="post">
                     <div class="logindiv">
                         <div class="emaildivv">
                             <label for="email">Email</label>
@@ -164,7 +170,16 @@
                             <p class="gridi">Remember me?</p>
                             <input type="checkbox" name="checkkbox" class="checckkbox">
                         </div> -->
-                        <button type="submit" name="loginn" class="loginbutton">Log in</button>
+                        <button type="submit" name="signin_submit" class="loginbutton">Log in</button>
+                        <label >
+                               <?php
+if (isset($_SESSION['message']) and !empty($_SESSION['message'])) {
+    echo @$_SESSION['message'];
+    @$_SESSION['message'] = "";
+}
+
+?>
+                        </label>
                     </div>
                 </form>
                 <div class="forggclaz">
