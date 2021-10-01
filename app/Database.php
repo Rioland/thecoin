@@ -99,7 +99,7 @@ class Database
         $stm->execute(array(":email" => $email, ":pass" => $pass));
         if ($stm->rowCount() >= 1) {
             $sub = "Welcome to MyCryptoGain";
-                   $mess = "
+            $mess = "
               <img src='https://cryptogaintrade.com/assets/img/brand/blue.png' width='100px' height='50px' />
 
               <br>
@@ -115,12 +115,13 @@ class Database
             <p><a href='mailto:riotech2222@gmail.com'>Send mail</a></p>
 
              ";
-// $mess = "please click on the following link to verify your account http://" . $_SERVER['SERVER_NAME'] . '/verify.php?token=' . $token;
-self::send_mail($email, $mess, $sub);
-
             $res = $stm->fetch();
             $_SESSION['userid'] = $res->id;
-            $_SESSION['user']=$res;
+            $_SESSION['user'] = $res;
+
+// $mess = "please click on the following link to verify your account http://" . $_SERVER['SERVER_NAME'] . '/verify.php?token=' . $token;
+            self::send_mail($email, $mess, $sub);
+
             return true;
         }
         return false;
@@ -191,10 +192,10 @@ self::send_mail($email, $mess, $sub);
         return $status;
     }
 
-    public static function is_login()
+    public static function is_login():bool
     {
 
-        if (isset($_SESSION["user"]) and !empty($_SESSION["user"]) and isset($_SESSION['user']) and !empty($_SESSION['user']) ) {
+        if (isset($_SESSION["user"]) and !empty($_SESSION["user"]) and isset($_SESSION['userid']) and !empty($_SESSION['userid'])) {
             return true;
         }
         return false;
@@ -205,7 +206,7 @@ self::send_mail($email, $mess, $sub);
         try {
 
             $myconn = self::getConn();
-            // $id = $_SESSION["userid"];
+            $id = $_SESSION["userid"];
             $qury = "SELECT * FROM `apis` WHERE `name`=:name";
             $stm = $myconn->prepare($qury);
             $stm->execute(array(":name" => $name));
@@ -259,7 +260,7 @@ self::send_mail($email, $mess, $sub);
         try {
 
             $myconn = self::getConn();
-//            $id = $_SESSION["userid"];
+            $id = $_SESSION["userid"];
             $qury = "SELECT * FROM `apis` WHERE `name`=:name";
             $stm = $myconn->prepare($qury);
             $stm->execute(array(":name" => $name));
@@ -328,7 +329,7 @@ self::send_mail($email, $mess, $sub);
         }
 
     }
-  public static function getRefererBalance()
+    public static function getRefererBalance()
     {
         try {
 
@@ -346,7 +347,7 @@ self::send_mail($email, $mess, $sub);
         }
 
     }
-  public static function getPicture()
+    public static function getPicture()
     {
         try {
 
@@ -451,20 +452,20 @@ self::send_mail($email, $mess, $sub);
         $investment = "0";
         $earns = "0";
         $withdraw = "0";
-        $referer="0";
+        $referer = "0";
         $feildback1 =
         $stm1->execute(array(":uid" => $id,
             ":bal" => $balance,
             ":investment" => $investment,
             ":earns" => $earns,
-            ":referer"=>$referer,
-             ":withdraw" => $withdraw));
+            ":referer" => $referer,
+            ":withdraw" => $withdraw));
 
         if ($feildback and $feildback1) {
             $sub = "Welcome to MyCryptoGain";
             $mess = "
               <img src='https://cryptogaintrade.com/assets/img/brand/blue.png' width='100px' height='50px' />
-            
+
               <br>
             <h2>
              Welcome " . $name . "
@@ -487,9 +488,9 @@ self::send_mail($email, $mess, $sub);
 
     }
 
-    public static function register($email, $pass, $name,$ph,$pic): string
+    public static function register($email, $pass, $name, $ph, $pic): string
     {
-        $_SESSION["dbroot"] = __DIR__;
+
         $country = self::ip_visitor_country();
         $myconn = self::getConn();
         $qury = "SELECT `id` FROM `users` WHERE `email`=:email ";
@@ -505,7 +506,17 @@ self::send_mail($email, $mess, $sub);
             $token = self::generate_token();
             $qury = "INSERT INTO `users`(`email`, `password`, `country`,`auth_token`,`id`,`name`,`picture`,`phone`) VALUES (:email,:password,:country,:token,:id,:name,:pic,:ph)";
             $stm = $myconn->prepare($qury);
-            $feildback = $stm->execute(array(":email" => $email, ":password" => md5($pass), ":country" => $country, ":token" => $token, ":id" => $id, ":name" => $name,":pic"=>$pic,":ph"=>$ph));
+            $stm->bindParam(":email", $email);
+            $stm->bindParam(":password", md5($pass));
+            $stm->bindParam(":country", $country);
+            $stm->bindParam(":token", $token);
+            $stm->bindParam(":id", $id);
+            $stm->bindParam(":name", $name);
+            $stm->bindParam(":pic", $pic);
+            $stm->bindParam(":ph", $ph);
+
+            // $feildback
+            //  $stm->execute(array(":email" => $email, ":password" => md5($pass), ":country" => $country, ":token" => $token, ":id" => $id, ":name" => $name,":pic"=>$pic,":ph"=>$ph));
 
             $qury1 = "INSERT INTO `account`(`id`, `balance`, `investment`, `earns`, `withdraw`,`referer`)
             VALUES (:uid,:bal,:investment,:earns,:withdraw,:referer)";
@@ -514,11 +525,20 @@ self::send_mail($email, $mess, $sub);
             $balance = "0";
             $investment = "0";
             $earns = "0";
-            $referer="0";
+            $referer = "0";
             $withdraw = "0";
-            $feildback1 = $stm1->execute(array(":uid" => $id, ":bal" => $balance, ":investment" => $investment, ":earns" => $earns, ":withdraw" => $withdraw,":referer"=>$referer));
+            $stm1->bindParam(":uid", $id);
+            $stm1->bindParam(":bal", $balance);
+            $stm1->bindParam(":investment", $investment);
+            $stm1->bindParam(":earns", $earns);
+            $stm1->bindParam(":withdraw", $withdraw);
+            $stm1->bindParam(":referer", $referer);
 
-            if ($feildback and $feildback1) {
+            // $feildback1 =
+            // $stm1->execute(array(":uid" => $id, ":bal" => $balance, ":investment" => $investment,
+            //  ":earns" => $earns, ":withdraw" => $withdraw, ":referer" => $referer));
+
+            if ($stm->execute() and $stm1->execute()) {
                 $sub = "Welcome to MyCryptoGain";
                 $mess = "
               <img src='https://cryptogaintrade.com/assets/img/brand/blue.png' width='100px' height='50px' />
@@ -713,14 +733,15 @@ self::send_mail($email, $mess, $sub);
         return $qrcode;
 
     }
-    public static function subscribe($pid){
-        $stm=Database::getConn()->prepare("SELECT * FROM `plans` WHERE `sn`=:pid");
-        $stm->bindParam(":pid",$pid);
+    public static function subscribe($pid)
+    {
+        $stm = Database::getConn()->prepare("SELECT * FROM `plans` WHERE `sn`=:pid");
+        $stm->bindParam(":pid", $pid);
         $stm->execute();
-        if($stm->rowCount()>0){
-            $_SESSION['newplans']=$stm->fetch();
+        if ($stm->rowCount() > 0) {
+            $_SESSION['newplans'] = $stm->fetch();
         }
-        echo  $_SESSION['newplans'];
+        echo $_SESSION['newplans'];
     }
 
 }

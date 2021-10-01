@@ -54,7 +54,7 @@ if($stm->rowCount()>0){
                                 <p>Profit: <?php echo $data->Profit ?></p>
                             </div>
                         </div>
-                        <h4 class="belowplanee"> <b>BEGINNER PLAN</b></h4>
+                        <h4 class="belowplanee"> <b><?php echo $data->mode ?></b></h4>
                         <button id="<?php echo $data->sn;  ?>"  class="buttsec4 btn">Enter Your Amount</button>
                     </div>
                 </div>

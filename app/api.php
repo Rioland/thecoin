@@ -77,7 +77,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         }
     }
-  
 
     // pages
     if (isset($_REQUEST['page']) and !empty($_REQUEST['page'])) {
@@ -96,12 +95,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     }
     if (isset($_REQUEST['planid']) and !empty($_REQUEST['planid'])) {
-    $_SESSION['page'] = $_REQUEST['page'];
-    $_SESSION['title'] = $_REQUEST['title'];
-    $id=$_REQUEST['planid'];
-    $response=Database::subscribe($id);
-    echo json_encode(array("code" => 200, "message" => "set"));
-}
+        $_SESSION['page'] = $_REQUEST['page'];
+        $_SESSION['title'] = $_REQUEST['title'];
+        $id = $_REQUEST['planid'];
+        $response = Database::subscribe($id);
+        echo json_encode(array("code" => 200, "message" => "set"));
+    }
 
+    if (isset($_REQUEST['bbl']) and !empty($_REQUEST['bbl'])) {
+        echo $_REQUEST['bbl'];
+
+    }
 
 }

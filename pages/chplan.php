@@ -83,7 +83,7 @@ $data = $_SESSION['newplans'];
                         <br>
 
 
-
+                        <label style="color: black;" id="cap"></label>
                         <button id="mdm" type="submit" class="investi">Invest Now</button>
                     </div>
 
@@ -105,26 +105,27 @@ $data = $_SESSION['newplans'];
                 } else if (amt > max) {
                     alert("Amount can't be greater than " + max);
 
-                }else{
+                } else {
                     let uid = <?php echo $_SESSION["userid"]; ?>;
-                   $.ajax({
-                       type: "post",
-                       url: "handler",
-                       data: {
-                       bbl:balance,
-                       id:uid
-                       },
-                       dataType: "json",
-                       success: function (response) {
-                           window.location.reload();
-                       }
-                       
-                   });
+                    $.ajax({
+                        type: "post",
+                        url: "handler",
+                        data: {
+                            bbl: "balance",
+                            id: uid
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            $("#cap").val(response)
+                            //    window.location.reload();
+                        }
+
+                    });
                     // alert(balance);
-                    window.location.reload();
+                    // window.location.reload();
                 }
 
-            }else{
+            } else {
                 alert("Enter amount");
             }
 

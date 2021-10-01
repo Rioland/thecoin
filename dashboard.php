@@ -1,6 +1,7 @@
 <?php
 require "./app/Database.php";
-if (Database::is_login() == false) {
+// $slogin=Database::is_login();
+if (Database::is_login()!=true) {
     header("location:signin");
 }
 $balance = Database::getBalance();
@@ -333,7 +334,7 @@ if (!empty($pic)) {
                     <!-- end of side bar -->
                     <!-- logout div -->
                 </div>
-                <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span
+                <a href="logout" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span
                         class="nav_name">SignOut</span> </a>
             </nav>
         </div>
@@ -520,7 +521,7 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
             });
 
 
-
+alert(<?php echo $slogin;  ?>)
         });
         </script>
         <!-- convet -->
