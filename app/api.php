@@ -107,15 +107,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     }
 
-
-if(isset($_REQUEST['deposit']) and $_REQUEST['deposit']==true){
-   $_SESSION['amt']=htmlentities($_REQUEST['amt']); 
-   $_SESSION['page'] = $_REQUEST['page'];
-   $_SESSION['title'] = $_REQUEST['title'];
+    if (isset($_REQUEST['deposit']) and $_REQUEST['deposit'] == true) {
+        $_SESSION['amt'] = htmlentities($_REQUEST['amt']);
+        $_SESSION['page'] = $_REQUEST['page'];
+        $_SESSION['title'] = $_REQUEST['title'];
 //    if(Database::cre)
-echo json_encode(array("code" => 200, "message" => "set"));
+        echo json_encode(array("code" => 200, "message" => "set"));
 
-}
+    }
 
+    if (isset($_REQUEST['getState']) and $_REQUEST['getState'] == true) {
+         Database::getStatus();
+    }
 
 }

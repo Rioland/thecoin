@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 01, 2021 at 10:27 AM
+-- Generation Time: Oct 01, 2021 at 04:33 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -36,6 +36,13 @@ CREATE TABLE `account` (
   `withdraw` varchar(50) NOT NULL,
   `referer` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `account` (`sn`, `id`, `balance`, `investment`, `earns`, `withdraw`, `referer`) VALUES
+(1, '3461693015', '0', '0', '0', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -115,6 +122,15 @@ CREATE TABLE `invoices` (
   `uid` varchar(256) NOT NULL,
   `ip` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `invoices`
+--
+
+INSERT INTO `invoices` (`id`, `code`, `address`, `price`, `status`, `uid`, `ip`) VALUES
+(1, 'g7daugeH3NxcRZHNRrhjolSOI', '1NbodSdJCNp5FApUcnDaTDckfXTTkNkYr1', 100, -1, '3461693015', '::1'),
+(2, 'IY9TcHpmIERDfrq7voCfcohx1', '1NbodSdJCNp5FApUcnDaTDckfXTTkNkYr1', 100, 2, '3461693015', '::1'),
+(3, 'XDjQUBRIpa7N1K06xPQ11qLuo', '1NbodSdJCNp5FApUcnDaTDckfXTTkNkYr1', 100, -1, '3461693015', '::1');
 
 -- --------------------------------------------------------
 
@@ -215,6 +231,13 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`sn`, `id`, `email`, `password`, `country`, `auth_token`, `reset_pass_token`, `token_date`, `is_verify`, `name`, `picture`, `phone`, `gender`, `created_at`) VALUES
+(3, '3461693015', 'riolandadedamola@gmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 'Unknown', '#4bkxi86up3@m1ysag7qedvf0925cjlrtownhz', NULL, NULL, NULL, NULL, 'iMarket.png', '08149916721', NULL, '2021-10-01 13:21:56');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -268,7 +291,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `apis`
@@ -280,7 +303,7 @@ ALTER TABLE `apis`
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `notification`
@@ -304,7 +327,7 @@ ALTER TABLE `plans`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
