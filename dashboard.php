@@ -24,7 +24,13 @@ $btcprice = Database::getBTCPrice("USD");
     <title>Dashboard</title>
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+ <!-- <link rel="stylesheet" href="choplan.css"> -->
+ <!-- <link rel="stylesheet" href="style.css"> -->
+ <!-- <link rel="stylesheet" href="external.css"> -->
+  <!-- <link rel="stylesheet" href="myaccount.css"> -->
+    <!-- <link rel="stylesheet" href="plansphp.css"> -->
 
+    <link rel="stylesheet" href="fontawesome-free-5.15.1-web/css/all.css">
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css' rel='stylesheet'>
     <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
     <script type='text/javascript' src=''></script>

@@ -151,15 +151,17 @@ class Database
     public static function getConn()
     {
 
-        $servername = "sql5.freesqldatabase.com";
-        $username = "sql5440458";
-        $password = "x9MQpxLtRV";
-// $servername = "localhost";
-// $username = "root";
-// $password = "";
+        // $servername = "sql5.freesqldatabase.com";
+        // $username = "sql5440458";
+        // $password = "x9MQpxLtRV";
+$servername = "localhost";
+$username = "root";
+$password = "";
+// db=sql5440458
+
 
         try {
-            $conn = new PDO("mysql:host=$servername;dbname=sql5440458", $username, $password);
+            $conn = new PDO("mysql:host=$servername;dbname=mycoin", $username, $password);
             // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
