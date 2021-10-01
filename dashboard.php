@@ -399,7 +399,7 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
 
             // dashboard
             $("#dash").click(function(e) {
-                // alert("hi");
+               
                 $.ajax({
                     type: "post",
                     url: "handler",
@@ -419,7 +419,7 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
             // deposit
 
             $("#dep").click(function(e) {
-                // alert("hi");
+               
                 $.ajax({
                     type: "post",
                     url: "handler",
@@ -440,7 +440,7 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
             // withdraw
 
             $("#with").click(function(e) {
-                // alert("hi");
+             
                 $.ajax({
                     type: "post",
                     url: "handler",
@@ -461,7 +461,7 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
 
             // profile
             $("#prof").click(function(e) {
-                // alert("hi");
+              
                 $.ajax({
                     type: "post",
                     url: "handler",
@@ -481,7 +481,7 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
             });
             // investment
             $("#inv").click(function(e) {
-                // alert("hi");
+              
                 $.ajax({
                     type: "post",
                     url: "handler",
@@ -501,7 +501,7 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
             });
             // transaction
             $("#tran").click(function(e) {
-                // alert("hi");
+                
                 $.ajax({
                     type: "post",
                     url: "handler",
@@ -520,8 +520,6 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
 
             });
 
-
-alert(<?php echo $slogin;  ?>)
         });
         </script>
         <!-- convet -->

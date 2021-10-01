@@ -1,58 +1,51 @@
 <?php
- $amt=$_GET['amt'];
-require "../app/Database.php";
-$address=Database::generateAddress();
- $inBtc=Database::USDtoBTC($amt);
-$hash=Database::generateQR($address);
-echo Database::getBitcoinResponsDetail(Database::getApiPrivate("block"),$address);
+
+
+// require "app/Database.php";
+echo $amt = $_SESSION['amt'];
+
+
+$address = Database::generateAddress();
+$inBtc = Database::USDtoBTC($amt);
+$hash = Database::generateQR($address);
+Database::createInvoice($amt,$address);
+$status = Database::getStatus();
 ?>
 
 
 
-<!doctype html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
 
-</head>
-
-<body>
-
-    <div class="container">
-        <div class="row justify-content-md-center ">
-            <center>
-            <div class="col col-lg-2" style="color:white; width: 40%; height:auto; background:black; margin:100px; padding:20px; ">
+<div class="container">
+    <div class="row justify-content-md-center ">
+        <center>
+            <div class="col col-lg-2"
+                style="color:white; width: 40%; height:auto; background:black; margin:100px; padding:20px; ">
                 <p> Amount: <?php echo $inBtc; ?>
                 </p>
                 <p>Address: <?php echo $address; ?> </p>
                 <p>
                     <img src="<?php echo $hash; ?>" alt="">
                 </p>
+
+                <p>
+                    <?php
+if ($status == -1) {
+
+    echo " Status:  <label style='color:red;' > UNPaid </label> ";
+} else if ($status == 1) {
+    echo " Status:  <label style='color:red;' > Partially Confirmed </label> ";
+
+}if ($status == 0) {
+    echo " Status:  <label style='color:red;'> Unconfirmed </label> ";
+
+}
+
+?>
+                </p>
             </div>
-            </center>
+        </center>
 
-        </div>
     </div>
-    </div>
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
-    </script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
-    -->
-</body>
-
-</html>
+</div>
+</div>

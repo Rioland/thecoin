@@ -3,24 +3,22 @@ require "app/Database.php";
 //Match secret for security
 if (isset($_GET['txid']) and isset($_GET['value']) and isset($_GET['status']) and isset($_GET['addr']) and isset($_GET['secrete'])) {
     $secret = "Mabcdastthrretyuuerthhherrrreeewbb5554olkdd";
-     $value = htmlentities($_GET['value']);
+    $value = htmlentities($_GET['value']);
 
     $txid = htmlentities($_GET['txid']);
 
     $status = htmlentities($_GET['status']);
     $addr = htmlentities($_GET['addr']);
     $serct = htmlentities($_GET['secrete']);
-   echo $bitc = Database::satochToBtc($value);
-
 
     if ($serct == $secret) {
-// DataBase::updateInvoiceStatus($status, $addr);
+        DataBase::updateInvoiceStatus($status, $addr);
 
         $res = json_decode(Database::getBTCTransaction($txid));
-        if ($res->status == "Confirmed") {
-            DataBase::btc_tras_update1($status, $value, $txid, $addr);
-            $bitc=Database::satochToBtc($value);
-            Database::updateAccout($colum,$value);
+        if ($res->status == "Confirmed" and $status == 2) {
+            DataBase::btc_tras_update1($status, $bitc, $txid, $addr);
+            $bitc = Database::satochToBtc($value);
+            echo Database::updateAccout($colum, $bitc);
         }
 
         //
