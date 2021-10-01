@@ -99,6 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['page'] = $_REQUEST['page'];
     $_SESSION['title'] = $_REQUEST['title'];
     $id=$_REQUEST['planid'];
+    $response=Database::subscribe($id);
     echo json_encode(array("code" => 200, "message" => "set"));
 }
 
