@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 01, 2021 at 07:28 AM
+-- Generation Time: Oct 01, 2021 at 10:27 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -50,6 +50,55 @@ CREATE TABLE `apis` (
   `private` varchar(1000) DEFAULT NULL,
   `redirect` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `apis`
+--
+
+INSERT INTO `apis` (`sn`, `name`, `public`, `private`, `redirect`) VALUES
+(1, 'google', '818881695167-96f0chbv1pctnltdcf2n8kunrkctqei3.apps.googleusercontent.com', 'rdquOpaJHjbW3Qkbs-6tM97G', 'https://erect1.org/app/googleapi.php'),
+(2, 'facebook', '2d86a2195bf92a7515065c69d1041221', '174465544659598', 'http://localhost/erect1/app/facebook.php'),
+(3, 'stripe', NULL, 'sk_test_51JB7jpG61ITNwdfRCiJ1FMnTBU0wxdddK5tmKoE9oWuMI8AqjdFw0RY15h8Grag5sdNVwGHptd9iQM7dtjzfv0LL00TrMyEhXs', NULL),
+(4, 'paystack', 'pk_test_99d69caec3f4f9bcf55f1f96a7c89a5653e2d80c', 'sk_test_98da44136d9c75dc67f3124016fdec282daf82bb', NULL),
+(5, 'block', NULL, '6NRYdE4XdqnERd0heOsHl3Yda4gdUKQ8fL2jAJOuSx8', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `btc_transaction`
+--
+
+CREATE TABLE `btc_transaction` (
+  `id` int(11) NOT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  `emailid` varchar(255) DEFAULT NULL,
+  `satoshi` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `xpub` varchar(255) DEFAULT NULL,
+  `timestamp` varchar(255) DEFAULT NULL,
+  `uuid` varchar(255) DEFAULT NULL,
+  `value` varchar(255) DEFAULT NULL,
+  `txid` varchar(255) DEFAULT NULL,
+  `currency` varchar(255) DEFAULT NULL,
+  `code` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `paid_satoshi` varchar(255) DEFAULT NULL,
+  `date time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `myid` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `btc_transaction`
+--
+
+INSERT INTO `btc_transaction` (`id`, `status`, `emailid`, `satoshi`, `description`, `xpub`, `timestamp`, `uuid`, `value`, `txid`, `currency`, `code`, `address`, `paid_satoshi`, `date time`, `myid`) VALUES
+(1, '0', 'riolandadedamola@gmail.com', '3367354', NULL, 'xpub6DKXyh1nJgzt57LSv8239YUViJY6eMY6p7Z8jkaYr9z8qiccZaXo39BLdVim6zpRrjSMyLfCrqoxp9BXG39K7xdVhuvXcNjxNkE7NB1WJrQ', '1626823588', '8faa0efd25db45b88338', '1000', NULL, 'USD', 'Deposit', '19ChBRQQCvojfxomwG3f7HajqTzdHm2MZu', '0', '2021-07-28 13:36:44', '1'),
+(2, '2', 'riolandadedamola@gmail.com', '24764', '', 'xpub6Caq7RLvv1f4Gh9REASyrm7a1CMfBiZfkuPGtv5TL8n6mpURPu89K1E5t5dwzXuRfuJRZujZt9c2Kc7UZSfceHcay54sf4JrpnXwrC2dBBf', '1627502275', 'c092e38675da42748808', '10', 'WarningThisIsAGeneratedTestPaymentAndNotARealBitcoinTransaction', 'USD', 'Deposit', '16XJV8nQ24niec8eXQmCXjsm4RWk2XEJAa', '9876000', '2021-07-28 19:03:58', '104752876112185585152'),
+(3, '2', 'riolandadedamola@gmail.com', '24764', '', 'xpub6Caq7RLvv1f4Gh9REASyrm7a1CMfBiZfkuPGtv5TL8n6mpURPu89K1E5t5dwzXuRfuJRZujZt9c2Kc7UZSfceHcay54sf4JrpnXwrC2dBBf', '1627502275', 'c092e38675da42748808', '10', 'WarningThisIsAGeneratedTestPaymentAndNotARealBitcoinTransaction', 'USD', 'Deposit', '16XJV8nQ24niec8eXQmCXjsm4RWk2XEJAa', '9876000', '2021-07-28 19:07:46', '104752876112185585152'),
+(4, '2', 'riolandadedamola@gmail.com', '24764', '', 'xpub6Caq7RLvv1f4Gh9REASyrm7a1CMfBiZfkuPGtv5TL8n6mpURPu89K1E5t5dwzXuRfuJRZujZt9c2Kc7UZSfceHcay54sf4JrpnXwrC2dBBf', '1627502275', 'c092e38675da42748808', '10', 'WarningThisIsAGeneratedTestPaymentAndNotARealBitcoinTransaction', 'USD', 'Deposit', '16XJV8nQ24niec8eXQmCXjsm4RWk2XEJAa', '9876000', '2021-07-28 19:08:14', '104752876112185585152'),
+(5, '2', 'riolandadedamola@gmail.com', '24764', '', 'xpub6Caq7RLvv1f4Gh9REASyrm7a1CMfBiZfkuPGtv5TL8n6mpURPu89K1E5t5dwzXuRfuJRZujZt9c2Kc7UZSfceHcay54sf4JrpnXwrC2dBBf', '1627502275', 'c092e38675da42748808', '10', 'WarningThisIsAGeneratedTestPaymentAndNotARealBitcoinTransaction', 'USD', 'Deposit', '16XJV8nQ24niec8eXQmCXjsm4RWk2XEJAa', '9876000', '2021-07-28 19:09:18', '104752876112185585152'),
+(6, '2', 'riolandadedamola@gmail.com', '24764', '', 'xpub6Caq7RLvv1f4Gh9REASyrm7a1CMfBiZfkuPGtv5TL8n6mpURPu89K1E5t5dwzXuRfuJRZujZt9c2Kc7UZSfceHcay54sf4JrpnXwrC2dBBf', '1627502275', 'c092e38675da42748808', '10', 'WarningThisIsAGeneratedTestPaymentAndNotARealBitcoinTransaction', 'USD', 'Deposit', '16XJV8nQ24niec8eXQmCXjsm4RWk2XEJAa', '9876000', '2021-07-28 19:09:46', '104752876112185585152'),
+(8, '1', 'riolandadedamola@gmail.com', '25238', '', 'xpub6Caq7RLvv1f4Gh9REASyrm7a1CMfBiZfkuPGtv5TL8n6mpURPu89K1E5t5dwzXuRfuJRZujZt9c2Kc7UZSfceHcay54sf4JrpnXwrC2dBBf', '1627520497', '005dabc2118b48c583c7', '10', 'WarningThisIsAGeneratedTestPaymentAndNotARealBitcoinTransaction', 'USD', 'Deposit', '184ejk3FRE193PWcvBb5EskDTfopwcQeen', '8000000000', '2021-07-29 00:02:30', '1');
 
 -- --------------------------------------------------------
 
@@ -166,13 +215,6 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`sn`, `id`, `email`, `password`, `country`, `auth_token`, `reset_pass_token`, `token_date`, `is_verify`, `name`, `picture`, `phone`, `gender`, `created_at`) VALUES
-(1, '0649931636', 'riolandadedamola@gmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 'Unknown', '6mgyndle74pkqjzfc9s52wab81xuo@h3#ritv0', NULL, NULL, NULL, NULL, 'iMarket.png', '08149916721', NULL, '2021-10-01 00:04:59');
-
---
 -- Indexes for dumped tables
 --
 
@@ -180,6 +222,12 @@ INSERT INTO `users` (`sn`, `id`, `email`, `password`, `country`, `auth_token`, `
 -- Indexes for table `account`
 --
 ALTER TABLE `account`
+  ADD PRIMARY KEY (`sn`);
+
+--
+-- Indexes for table `apis`
+--
+ALTER TABLE `apis`
   ADD PRIMARY KEY (`sn`);
 
 --
@@ -192,6 +240,12 @@ ALTER TABLE `invoices`
 -- Indexes for table `notification`
 --
 ALTER TABLE `notification`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `payments_trasact`
+--
+ALTER TABLE `payments_trasact`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -211,9 +265,33 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `account`
+--
+ALTER TABLE `account`
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `apis`
+--
+ALTER TABLE `apis`
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `notification`
+--
+ALTER TABLE `notification`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `payments_trasact`
+--
+ALTER TABLE `payments_trasact`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -226,7 +304,7 @@ ALTER TABLE `plans`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
