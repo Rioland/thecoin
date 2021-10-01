@@ -616,7 +616,7 @@ class Database
     {
        $address="";
         $api_key = self::getApiPrivate('block') ?? "6NRYdE4XdqnERd0heOsHl3Yda4gdUKQ8fL2jAJOuSx8";
-        // $url = 'https://www.blockonomics.co/api/new_address?reset=1';
+        $url = 'https://www.blockonomics.co/api/new_address?reset=1';
 
         $ch = curl_init();
 
