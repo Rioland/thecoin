@@ -14,148 +14,111 @@
         <section class="sec1">
             <p>Say goodbye to low-interest savings accounts. Grow your wealth with profitable bitcoin investment.</p>
             <div class="overallflexsec4">
-                <div class="boxxiplan2">
+                <?php
+$conn=Database::getConn();
+$stm=$conn->prepare("SELECT * FROM `plans`");
+$stm->execute();
+if($stm->rowCount()>0){
+
+
+    for ($i=0; $i < $stm->rowCount() ; $i++) { 
+       $data=$stm->fetch();
+       if ($i==0 or $i==$stm->rowCount()) {
+           ?>
+
+<div class="boxxiplan2">
                     <div class="flexbasisboxxi">
                         <img src="./images/borderadd.jpg">
                         <div class="textti">
-                            <h3>BEGINNER PLAN</h3>
+                            <h3><?php echo $data->mode ?></h3>
                         </div>
                         <div class="boxxi2">
                             <div class="flexboxxi2">
                                 <i class="fas fa-arrow-right"></i>
-                                <p>Minimum: $50</p>
+                                <p>Minimum: $<?php echo $data->Minimum ?></p>
                             </div>
                             <div class="flexboxxi2">
                                 <i class="fas fa-arrow-right"></i>
-                                <p>Maximum: $5000</p>
+                                <p>Maximum: $<?php echo $data->Maximum ?></p>
                             </div>
                             <div class="flexboxxi2">
                                 <i class="fas fa-arrow-right"></i>
-                                <p>Referral: 20%</p>
+                                <p>Referral: <?php echo $data->Referral ?>%</p>
                             </div>
                             <div class="flexboxxi2">
                                 <i class="fas fa-arrow-right"></i>
-                                <p>Duration: 4hrs</p>
+                                <p>Duration: <?php echo $data->Duration ?></p>
                             </div>
                             <div class="flexboxxi2">
                                 <i class="fas fa-arrow-right"></i>
-                                <p>Profit: 30% + Investment</p>
+                                <p>Profit: <?php echo $data->Profit ?></p>
                             </div>
                         </div>
                         <h4 class="belowplanee"> <b>BEGINNER PLAN</b></h4>
-                        <button class="buttsec4">Enter Your Amount</button>
-                    </div>
-                </div>
-
-                <!--========================== plan 2 ============================== -->
-
-                <div class="boxxiplan2">
-                    <div class="flexbasisboxxi">
-                        <img src="./images/borderadd.jpg">
-                        <div class="texttioinge">
-                            <h3>PREMIUM PLAN</h3>
-                        </div>
-                        <div class="boxxi2oinge">
-                            <div class="flexboxxi2">
-                                <i class="fas fa-arrow-right"></i>
-                                <p>Minimum: $50</p>
-                            </div>
-                            <div class="flexboxxi2">
-                                <i class="fas fa-arrow-right"></i>
-                                <p>Maximum: $500</p>
-                            </div>
-                            <div class="flexboxxi2">
-                                <i class="fas fa-arrow-right"></i>
-                                <p>Referral: 10%</p>
-                            </div>
-                            <div class="flexboxxi2">
-                                <i class="fas fa-arrow-right"></i>
-                                <p>Duration: 8hrs</p>
-                            </div>
-                            <div class="flexboxxi2">
-                                <i class="fas fa-arrow-right"></i>
-                                <p>Profit: 15% + Investment</p>
-                            </div>
-                        </div>
-                        <h4 class="belowplanee"> <b>PREMIUM PLAN</b></h4>
-                        <button class="buttsec4oinge">Enter Your Amount</button>
+                        <button id="<?php echo $data->sn;  ?>"  class="buttsec4 btn">Enter Your Amount</button>
                     </div>
                 </div>
 
 
-                <!--========================== plan 3 ============================== -->
-                <div class="boxxiplan2">
+
+
+<?php
+       }else{
+
+?>
+ <div class="boxxiplan2">
                     <div class="flexbasisboxxi">
                         <img src="./images/borderadd.jpg">
                         <div class="texttioinge">
-                            <h3>SILVER PLAN</h3>
+                            <h3><?php echo $data->mode ?></h3>
                         </div>
                         <div class="boxxi2oinge">
                             <div class="flexboxxi2">
                                 <i class="fas fa-arrow-right"></i>
-                                <p>Minimum: $100</p>
+                                 <p>Minimum: $<?php echo $data->Minimum ?></p>
                             </div>
                             <div class="flexboxxi2">
                                 <i class="fas fa-arrow-right"></i>
-                                <p>Maximum: $1000</p>
+                               <p>Maximum: $<?php echo $data->Maximum ?></p>
                             </div>
                             <div class="flexboxxi2">
                                 <i class="fas fa-arrow-right"></i>
-                                <p>Referral: 15%</p>
+                                 <p>Referral: <?php echo $data->Referral ?>%</p>
                             </div>
                             <div class="flexboxxi2">
                                 <i class="fas fa-arrow-right"></i>
-                                <p>Duration: 6hrs</p>
+                                 <p>Duration: <?php echo $data->Duration ?></p>
                             </div>
                             <div class="flexboxxi2">
                                 <i class="fas fa-arrow-right"></i>
-                                <p>Profit: 20% + Investment</p>
+                                <p>Profit: <?php echo $data->Profit ?></p>
                             </div>
                         </div>
                         <h4 class="belowplanee"> <b>SILVER PLAN</b></h4>
-                        <button class="buttsec4oinge">Enter Your Amount</button>
+                        <button id="<?php echo $data->sn;  ?>" class="buttsec4oinge btn">Enter Your Amount</button>
                     </div>
                 </div>
 
 
 
-                <!--========================== plan 4 ============================== -->
-                <div class="boxxiplan2">
-                    <div class="flexbasisboxxi">
-                        <img src="./images/borderadd.jpg">
-                        <div class="textti">
-                            <h3>GOLD PLAN</h3>
-                        </div>
-                        <div class="boxxi2">
-                            <div class="flexboxxi2">
-                                <i class="fas fa-arrow-right"></i>
-                                <p>Minimum: $500</p>
-                            </div>
-                            <div class="flexboxxi2">
-                                <i class="fas fa-arrow-right"></i>
-                                <p>Maximum: $5000</p>
-                            </div>
-                            <div class="flexboxxi2">
-                                <i class="fas fa-arrow-right"></i>
-                                <p>Referral: 20%</p>
-                            </div>
-                            <div class="flexboxxi2">
-                                <i class="fas fa-arrow-right"></i>
-                                <p>Duration: 4hrs</p>
-                            </div>
-                            <div class="flexboxxi2">
-                                <i class="fas fa-arrow-right"></i>
-                                <p>Profit: 30% + Investment</p>
-                            </div>
-                        </div>
-                        <h4 class="belowplanee"> <b>GOLD PLAN</b></h4>
-                        <button class="buttsec4">Enter Your Amount</button>
-                    </div>
-                </div>
+
+
+<?php
+       }
+
+    }
+
+}
+ 
+?>
+                
+
+         
+             
             </div><br>
 
             <!-- ========================================== MAXWIDTH ======================================================= -->
-            <div class="maxxiwidth">
+            <!-- <div class="maxxiwidth">
                 <div class="plans2a">
                     <div class="boxxi">
                         <div class="flexbasisboxxi">
@@ -298,7 +261,10 @@
                         </div>
                     </div>
                 </div>
-            </div><br><br><br>
+            <!-- </div> -->
+       
+            
+            <br><br><br>
         </section>
     </center>
 
@@ -348,6 +314,28 @@
         <hr>
         <p class="copyright">Cryptotradegain @ 2021 - All Rights Reserved</p>
     </section>
+    <script>
+        $(document).ready(function () {
+            $(".btn").click(function (e) { 
+               let id=$.trim($(this).attr("id"));
+               $.ajax({
+                   type:"post",
+                   url: "handler",
+                   data: {
+                       planid:id,
+                       page:"pages/chplan.php",
+                       title:"plans"
+                   },
+                   dataType: "dataType",
+                   success: function (response) {
+                       window.location.reload();
+                   }
+               });
+               window.location.reload();
+                
+            });
+        });
+    </script>
 </body>
 
 </html>

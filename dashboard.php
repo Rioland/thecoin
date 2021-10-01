@@ -9,9 +9,8 @@ $earn = Database::getEarnsBalance();
 $width = Database::getWithdrawBalance();
 $referer = Database::getRefererBalance();
 $pic = Database::getPicture();
-$btcprice=Database::getBTCPrice("USD");
+$btcprice = Database::getBTCPrice("USD");
 // $usdtobtc=Database::USDtoBTC();
-
 
 // session_start();
 ?>
@@ -22,8 +21,9 @@ $btcprice=Database::getBTCPrice("USD");
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>Dashboard</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-  
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css' rel='stylesheet'>
     <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
     <script type='text/javascript' src=''></script>
@@ -195,12 +195,12 @@ $btcprice=Database::getBTCPrice("USD");
         .header_img {
             width: 40px;
             height: 40px;
-            background:white;
+            background: white;
         }
 
         .header_img img {
             width: 45px;
-            
+
         }
 
         .l-navbar {
@@ -235,25 +235,26 @@ $btcprice=Database::getBTCPrice("USD");
 <body oncontextmenu='return false' class='snippet-body'>
 
     <body id="body-pd">
+    
         <header class="header" id="header">
             <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i>
-               
+
             </div>
-            <label style="color: white;"  > <?php 
-               if(isset($_SESSION["title"]) and !empty($_SESSION["title"]) ){
-                  echo strtoupper($_SESSION["title"]);
-               }else{
-                  echo strtoupper("Dashboard");
-               }
-               ?>   </label>
+            <label style="color: white;"> <?php
+if (isset($_SESSION["title"]) and !empty($_SESSION["title"])) {
+    echo strtoupper($_SESSION["title"]);
+} else {
+    echo strtoupper("Dashboard");
+}
+?> </label>
             <!-- profile image -->
             <?php
-      if (!empty($pic)) {
+if (!empty($pic)) {
 
     ?>
             <div class="header_img">
 
-                <img src="<?php echo $pic; ?>" alt="">
+                <img src="<?php echo "app/uploadimageF/{$pic}"; ?>" alt="">
             </div>
             <?php
 
@@ -308,21 +309,21 @@ $btcprice=Database::getBTCPrice("USD");
                             </svg>
                             </i> <span class="nav_name">Withdraw</span> </a>
                         <!-- Invest -->
-                        <a id="inv" href="" class="nav_link"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
+                        <a id="inv" href="" class="nav_link"> <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
                                 <path
                                     d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z" />
                             </svg> <span class="nav_name">Invest</span> </a>
                         <!-- transaction -->
-                        <a id="tran" href="" class="nav_link"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                fill="currentColor" class="bi bi-list-check" viewBox="0 0 16 16">
+                        <a id="tran" href="" class="nav_link"> <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                height="16" fill="currentColor" class="bi bi-list-check" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
                                     d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z" />
                             </svg></i> <span class="nav_name">Transaction</span>
                         </a>
                         <!-- profile -->
-                        <a id="prof" href="" class="nav_link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <a id="prof" href="" class="nav_link"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                                 <path fill-rule="evenodd"
                                     d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
@@ -339,15 +340,12 @@ $btcprice=Database::getBTCPrice("USD");
         <!--Container Main start-->
         <div class="height-100 bg-light">
             <?php
-            if(isset($_SESSION['page']) and !empty($_SESSION['page']) ){
-                require($_SESSION['page']);
-            }else{
-     require "pages/home.php";
+if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
+    require $_SESSION['page'];
+} else {
+    require "pages/home.php";
 
-            }
-
-          
-
+}
 
 ?>
         </div>
@@ -395,133 +393,138 @@ $btcprice=Database::getBTCPrice("USD");
         });
         </script>
 
-       <script>
-            $(document).ready(function () {
-               
-                // dashboard
-                $("#dash").click(function (e) { 
-                    // alert("hi");
-                    $.ajax({
-                        type: "post",
-                        url: "handler",
-                        data: {
-                            page:"pages/home.php",
-                            title:"home"
-                        },
-                        dataType: "json",
-                        success: function (response) {
-                            window.location.reload();
-                            console.log(response);
-                        }
-                    });
-                    
-                    window.location.reload();
-                });
-// deposit
+        <script>
+        $(document).ready(function() {
 
-               $("#dep").click(function (e) { 
-                    // alert("hi");
-                    $.ajax({
-                        type: "post",
-                        url: "handler",
-                        data: {
-                            page:"pages/dep.php",
-                            title:"deposit"
-                        },
-                        dataType: "json",
-                        success: function (response) {
-                            
-                            console.log(response);
-                        }
-                    });  
-                    window.location.reload();  
-                    
-                });
-                // withdraw
-
-                 $("#with").click(function (e) { 
-                    // alert("hi");
-                    $.ajax({
-                        type: "post",
-                        url: "handler",
-                        data: {
-                            page:"pages/with.php",
-                            title:"withdraw"
-                        },
-                        dataType: "json",
-                        success: function (response) {
-                            
-                            console.log(response);
-                        }
-                    });  
-                    window.location.reload();  
-                    
+            // dashboard
+            $("#dash").click(function(e) {
+                // alert("hi");
+                $.ajax({
+                    type: "post",
+                    url: "handler",
+                    data: {
+                        page: "pages/home.php",
+                        title: "home"
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        window.location.reload();
+                        console.log(response);
+                    }
                 });
 
-                // profile
-                 $("#prof").click(function (e) { 
-                    // alert("hi");
-                    $.ajax({
-                        type: "post",
-                        url: "handler",
-                        data: {
-                            page:"pages/prof.php",
-                            title:"profile"
-                        },
-                        dataType: "json",
-                        success: function (response) {
-                            
-                            console.log(response);
-                        }
-                    });  
-                    window.location.reload();  
-                    
+                window.location.reload();
+            });
+            // deposit
+
+            $("#dep").click(function(e) {
+                // alert("hi");
+                $.ajax({
+                    type: "post",
+                    url: "handler",
+                    data: {
+                        page: "pages/dep.php",
+                        title: "deposit"
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        window.location.reload();
+
+                        console.log(response);
+                    }
                 });
-                // investment
-                $("#inv").click(function (e) { 
-                    // alert("hi");
-                    $.ajax({
-                        type: "post",
-                        url: "handler",
-                        data: {
-                            page:"pages/inv.php",
-                            title:"investment"
-                        },
-                        dataType: "json",
-                        success: function (response) {
-                            
-                            console.log(response);
-                        }
-                    });  
-                    window.location.reload();  
-                    
-                });
-                // transaction
-                $("#tran").click(function (e) { 
-                    // alert("hi");
-                    $.ajax({
-                        type: "post",
-                        url: "handler",
-                        data: {
-                            page:"pages/trans.php",
-                            title:"transaction"
-                        },
-                        dataType: "json",
-                        success: function (response) {
-                            
-                            console.log(response);
-                        }
-                    });  
-                    window.location.reload();  
-                    
-                });
-                
- 
+                window.location.reload();
 
             });
+            // withdraw
+
+            $("#with").click(function(e) {
+                // alert("hi");
+                $.ajax({
+                    type: "post",
+                    url: "handler",
+                    data: {
+                        page: "pages/with.php",
+                        title: "withdraw"
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        window.location.reload();
+
+                        console.log(response);
+                    }
+                });
+                window.location.reload();
+
+            });
+
+            // profile
+            $("#prof").click(function(e) {
+                // alert("hi");
+                $.ajax({
+                    type: "post",
+                    url: "handler",
+                    data: {
+                        page: "pages/prof.php",
+                        title: "profile"
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        window.location.reload();
+
+                        console.log(response);
+                    }
+                });
+                window.location.reload();
+
+            });
+            // investment
+            $("#inv").click(function(e) {
+                // alert("hi");
+                $.ajax({
+                    type: "post",
+                    url: "handler",
+                    data: {
+                        page: "pages/inv.php",
+                        title: "investment"
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        window.location.reload();
+
+                        console.log(response);
+                    }
+                });
+                window.location.reload();
+
+            });
+            // transaction
+            $("#tran").click(function(e) {
+                // alert("hi");
+                $.ajax({
+                    type: "post",
+                    url: "handler",
+                    data: {
+                        page: "pages/trans.php",
+                        title: "transaction"
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        window.location.reload();
+
+                        console.log(response);
+                    }
+                });
+                window.location.reload();
+
+            });
+
+
+
+        });
         </script>
         <!-- convet -->
-  
+
     </body>
 
 </html>
