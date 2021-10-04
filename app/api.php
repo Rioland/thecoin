@@ -101,21 +101,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $response = Database::subscribe($id);
         echo json_encode(array("code" => 200, "message" => "set"));
     }
-
+// set investment
     if (isset($_REQUEST['investamt']) and !empty($_REQUEST['investamt'])) {
-        $amt= htmlentities($_REQUEST['investamt']);
-        Database::updateAccout("investment",$amt);
+        $amt = htmlentities($_REQUEST['investamt']);
+        Database::updateAccout("investment", $amt);
         $id = $_SESSION["userid"];
 
-        $conn=Database::getConn();
-        $stm=$conn->prepare("UPDATE `account` SET `balance`=`balance`-:val WHERE `id`=:id");
-        $stm->bindParam(":val",$amt);
-        $stm->bindParam(":id",$id);
+        $conn = Database::getConn();
+        $stm = $conn->prepare("UPDATE `account` SET `balance`=`balance`-:val WHERE `id`=:id");
+        $stm->bindParam(":val", $amt);
+        $stm->bindParam(":id", $id);
         $stm->execute();
-         echo json_encode(array("code" => 200, "message" => "set"));
+        echo json_encode(array("code" => 200, "message" => "set"));
 
     }
-
+// set deposit
     if (isset($_REQUEST['deposit']) and $_REQUEST['deposit'] == true) {
         $_SESSION['amt'] = htmlentities($_REQUEST['amt']);
         $_SESSION['page'] = $_REQUEST['page'];
@@ -126,7 +126,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (isset($_REQUEST['getState']) and $_REQUEST['getState'] == true) {
-       echo  Database::getStatus();
+        echo Database::getStatus();
+    }
+
+// invest
+    if (isset($_REQUEST['investamt']) and !empty($_REQUEST['investamt'])) {
+        $amt = htmlentities($_REQUEST['investamt']);
+        Database::updateAccout("investment", $amt);
+        $id = $_SESSION["userid"];
+
+        $conn = Database::getConn();
+        $stm = $conn->prepare("UPDATE `account` SET `balance`=`balance`-:val WHERE `id`=:id");
+        $stm->bindParam(":val", $amt);
+        $stm->bindParam(":id", $id);
+        $stm->execute();
+        $_SESSION['page'] = $_REQUEST['page'];
+        $_SESSION['title'] = $_REQUEST['title'];
+
+        echo json_encode(array("code" => 200, "message" => "set"));
+
+    }
+
+// cashout
+
+    if (isset($_REQUEST['withdrawamt']) and !empty($_REQUEST['withdrawamt'])) {
+        $withdrawamt = htmlentities($_REQUEST['withdrawamt']);
+
+        Database::updateAccout("withdraw", $amt);
+        $id = $_SESSION["userid"];
+        $addr = Database::getPayOutAddress();
+        $moth = Database::getPayOutMethod();
+
+        $conn = Database::getConn();
+        $stm = $conn->prepare("UPDATE `account` SET `balance`=`balance`-:val WHERE `id`=:id");
+        $stm->bindParam(":val", $amt);
+        $stm->bindParam(":id", $id);
+        $stm->execute();
+
+        $stm = $conn->prepare("INSERT INTO `withdraw`(`id`, `method`, `address`,`amt`) VALUES (:id,:moth,:addr,:amt)");
+        $stm->bindParam(":amt", $amt);
+        $stm->bindParam(":id", $id);
+        $stm->bindParam(":addr", $addr);
+        $stm->bindParam(":moth", $moth);
+        $_SESSION['page'] = $_REQUEST['page'];
+        $_SESSION['title'] = $_REQUEST['title'];
+
+        $stm->execute();
+
+        echo json_encode(array("code" => 200, "message" => "set"));
+
     }
 
 }

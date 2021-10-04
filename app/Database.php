@@ -56,8 +56,9 @@ class Database
 
     }
 
-    public static function satochToBtc($satoshi){
-     return ($satoshi*0.00000001);
+    public static function satochToBtc($satoshi)
+    {
+        return ($satoshi * 0.00000001);
     }
 
     public static function updateAccout($colum, $value)
@@ -151,17 +152,16 @@ class Database
     public static function getConn()
     {
 
-        $servername = "sql5.freesqldatabase.com";
-        $username = "sql5440458";
-        $password = "x9MQpxLtRV";
-// $servername = "localhost";
-// $username = "root";
-// $password = "";
+        // $servername = "sql5.freesqldatabase.com";
+        // $username = "sql5440458";
+        // $password = "x9MQpxLtRV";
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
 // db=sql5440458
 
-
         try {
-            $conn = new PDO("mysql:host=$servername;dbname=sql5440458", $username, $password);
+            $conn = new PDO("mysql:host=$servername;dbname=mycoin", $username, $password);
             // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
@@ -187,6 +187,43 @@ class Database
             return "";
         }
     }
+
+    public static function getPayOutAddress(): string
+    {
+        $myconn = self::getConn();
+        $id = $_SESSION["userid"];
+
+        $sql = "SELECT * FROM `address` WHERE `id`='$id' ";
+        $result = $myconn->prepare($sql);
+        $result->execute();
+        if ($result->rowCount() > 0) {
+            $row = $result->fetch();
+            return $row->address;
+        } else {
+            return "no address";
+        }
+
+    }
+
+     public static function getPayOutMethod(): string
+    {
+        $myconn = self::getConn();
+        $id = $_SESSION["userid"];
+
+        $sql = "SELECT * FROM `address` WHERE `id`='$id' ";
+        $result = $myconn->prepare($sql);
+        $result->execute();
+        if ($result->rowCount() > 0) {
+            $row = $result->fetch();
+            return $row->method;
+        } else {
+            return "no Method";
+        }
+
+    }
+
+
+
 
     public static function GetCode($address)
     {

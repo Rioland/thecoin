@@ -112,7 +112,7 @@ $data = $_SESSION['newplans'];
                     alert("Amount can't be greater than " + max);
 
                 } else {
-                    let uid = <?php echo $_SESSION["userid"]; ?>;
+                    // let uid = <?php echo $_SESSION["userid"]; ?>;
                     if (price > bal) {
                         alert("no enough balance");
                     } else {
@@ -121,34 +121,19 @@ $data = $_SESSION['newplans'];
                             url: "handler",
                             data: {
                                 investamt: price,
+                                page: "pages/home.php",
+                                title: "home"
                                 // id: uid
                             },
                             dataType: "json",
                             success: function(response) {
-                               
+                                window.location.reload();
                             }
 
                         });
-                        // alert(balance);
-                        // window.location.reload();
 
                     }
-                    // $.ajax({
-                    //     type: "post",
-                    //     url: "handler",
-                    //     data: {
-                    //         bbl: "balance",
-                    //         id: uid
-                    //     },
-                    //     dataType: "json",
-                    //     success: function(response) {
-                    //         $("#cap").val(response)
-                    //         //    window.location.reload();
-                    //     }
 
-                    // });
-                    // alert(balance);
-                    // window.location.reload();
                 }
 
             } else {

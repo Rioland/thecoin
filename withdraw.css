@@ -1,0 +1,392 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    text-decoration: none;
+    font-family: sans-serif;
+    box-sizing: border-box
+}
+
+html {
+    margin: 0 auto !important;
+    float: none !important;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #2F2F2F;
+}
+
+/* ===================================================================== WITHDRAWAL PAGE ================================================================================================ */
+
+.sec51 {
+    margin: 30px 100px;
+    min-width: min-content;
+}
+
+.withdrawwl {
+    max-width: 1381px;
+}
+
+.withdrawwl h1 {
+    text-align: left;
+    font-size: 30px;
+    font-weight: 700;
+    color: #fbfbf9;
+}
+
+.boxxiblue {
+    margin-top: 20px;
+    width: 800px;
+    padding: 40px;
+    background-color: rgb(108, 167, 172);
+}
+
+.boxxiblue p {
+    font-size: 25px;
+    line-height: 25px;
+    text-align: center;
+}
+
+.payoutdiv {
+    margin-top: 10px;
+    display: flex;
+    width: 800px;
+    justify-content: space-between;
+}
+
+.payoutdiv p {
+    font-size: 15px;
+    font-weight: 600;
+    color: wheat;
+}
+
+.payoutdiv span {
+    font-size: 15px;
+    color: rgb(248, 237, 217);
+}
+
+.payoutti {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+}
+
+.amountdiv {
+    margin-top: 20px;
+}
+
+.buttonwithdrawl {
+    margin-top: 20px;
+}
+
+.currencydiv {
+    display: grid;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.currencydiv label {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+}
+
+.currencydiv select {
+    width: 800px;
+    height: 35px;
+    margin-top: 10px;
+    outline: none;
+    text-align: center;
+    background: #f1f1f1;
+    color: #001466;
+}
+
+.amountdiv {
+    display: grid;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.amountdiv label {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+}
+
+.amountdiv input[type=text], input[type=email] {
+    width: 800px;
+    padding: 15px;
+    margin: 10px 0 22px 0;
+    display: inline-block;
+    border: none;
+    outline: none;
+    text-align: center;
+    background: #f1f1f1;
+    color: #001466;
+}
+
+.buttwithdrw {
+    width: 200px;
+    height: 50px;
+    background-color: rgb(108, 167, 172);
+    outline: none;
+    border-radius: 10px 10px;
+    font-weight: 700;
+    font-size: 22px;
+}
+
+@media screen and (max-width: 768px) {
+    .sec51 {
+        margin: 30px 0px;
+        min-width: min-content;
+    }
+    .withdrawwl h1 {
+        text-align: left;
+        font-size: 30px;
+        font-weight: 700;
+    }
+    .boxxiblue {
+        margin-top: 20px;
+        width: 400px;
+        padding: 20px;
+        background-color: rgb(108, 167, 172);
+    }
+    .boxxiblue p {
+        font-size: 18px;
+        font-style: italic;
+        line-height: 25px;
+        text-align: center;
+    }
+    .payoutdiv {
+        margin-top: 10px;
+        display: flex;
+        width: 400px;
+        justify-content: space-between;
+    }
+    .payoutdiv p {
+        font-size: 15px;
+        font-weight: 600;
+    }
+    .payoutti {
+        font-size: 18px;
+        font-weight: 700;
+    }
+    .amountdiv {
+        margin-top: 20px;
+    }
+    .buttonwithdrawl {
+        margin-top: 20px;
+    }
+    .currencydiv {
+        display: grid;
+        justify-content: center;
+        margin-top: 50px;
+    }
+    .currencydiv label {
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .currencydiv select {
+        width: 400px;
+        height: 35px;
+        margin-top: 10px;
+        outline: none;
+        text-align: center;
+        background: #f1f1f1;
+        color: #001466;
+    }
+    .amountdiv {
+        display: grid;
+        justify-content: center;
+        margin-top: 50px;
+    }
+    .amountdiv label {
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .amountdiv input[type=text], input[type=email] {
+        width: 400px;
+        padding: 15px;
+        margin: 10px 0 22px 0;
+        display: inline-block;
+        border: none;
+        outline: none;
+        text-align: center;
+        background: #f1f1f1;
+        color: #001466;
+    }
+    .buttwithdrw {
+        width: 200px;
+        height: 50px;
+        background-color: rgb(108, 167, 172);
+        outline: none;
+        border-radius: 10px 10px;
+        font-weight: 700;
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 992px) and (min-width: 768px) {
+    .sec51 {
+        margin: 30px 0px;
+        min-width: min-content;
+    }
+    .withdrawwl h1 {
+        text-align: left;
+        font-size: 30px;
+        font-weight: 700;
+    }
+    .boxxiblue {
+        margin-top: 20px;
+        width: 500px;
+        padding: 20px;
+        background-color: rgb(108, 167, 172);
+    }
+    .boxxiblue p {
+        font-size: 18px;
+        font-style: italic;
+        line-height: 25px;
+        text-align: center;
+    }
+    .payoutdiv {
+        margin-top: 10px;
+        display: flex;
+        width: 400px;
+        justify-content: space-between;
+    }
+    .payoutdiv p {
+        font-size: 15px;
+        font-weight: 600;
+    }
+    .payoutti {
+        font-size: 18px;
+        font-weight: 700;
+    }
+    .amountdiv {
+        margin-top: 20px;
+    }
+    .buttonwithdrawl {
+        margin-top: 20px;
+    }
+    .currencydiv {
+        display: grid;
+        justify-content: center;
+        margin-top: 50px;
+    }
+    .currencydiv label {
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .currencydiv select {
+        width: 500px;
+        height: 35px;
+        margin-top: 10px;
+        outline: none;
+        text-align: center;
+        background: #f1f1f1;
+        color: #001466;
+    }
+    .amountdiv {
+        display: grid;
+        justify-content: center;
+        margin-top: 50px;
+    }
+    .amountdiv label {
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .amountdiv input[type=text], input[type=email] {
+        width: 500px;
+        padding: 15px;
+        margin: 10px 0 22px 0;
+        display: inline-block;
+        border: none;
+        outline: none;
+        text-align: center;
+        background: #f1f1f1;
+        color: #001466;
+    }
+    .buttwithdrw {
+        width: 200px;
+        height: 50px;
+        background-color: rgb(108, 167, 172);
+        outline: none;
+        border-radius: 10px 10px;
+        font-weight: 700;
+        font-size: 22px;
+    }
+}
+
+/* ========================================================================= FORGOT PASSWORD ================================================================================ */
+
+.padlockimg {
+    margin-top: 30px;
+    display: grid;
+    justify-content: center;
+}
+
+.padlockimg img {
+    width: 100px;
+    height: 80px;
+}
+
+.wordingscent {
+    margin-top: 20px;
+    display: grid;
+    justify-content: center;
+}
+
+.wordingscent h1 {
+    font-size: 35px;
+    font-weight: 800;
+    color: #fbfbf9;
+}
+
+.wordingscent p {
+    padding-top: 20px;
+    font-size: 20px;
+    color: white;
+}
+
+.buttons {
+    margin-top: 50px;
+}
+
+.buttons label {
+    color: #fbfbf9;
+}
+
+.inputtbutt {
+    outline: none;
+    border: none;
+    width: 400px;
+    height: 30px;
+    padding: 10px;
+}
+
+.buttt1 {
+    cursor: none;
+}
+
+.buttt1 .fas {
+    font-size: 20px;
+}
+
+.buttti2 {
+    width: 150px;
+    height: 30px;
+    font-weight: 700;
+}
+
+input[type=password] {
+    width: 425px;
+    padding: 10px;
+    margin: 10px 0 22px 0;
+    display: inline-block;
+    border: none;
+    outline: none;
+    text-align: center;
+    background: #f1f1f1;
+    color: #001466;
+}
