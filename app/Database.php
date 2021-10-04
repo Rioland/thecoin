@@ -62,7 +62,7 @@ class Database
 
     public static function updateAccout($colum, $value)
     {
-        $qry = "UPDATE `account` SET $colum=:val WHERE `id`=:id";
+        $qry = "UPDATE `account` SET `$colum`=`$colum` + :val WHERE `id`=:id";
         $stm = self::getConn()->prepare($qry);
         $stm->bindParam(":val", $value);
         $stm->bindParam(":id", $id);

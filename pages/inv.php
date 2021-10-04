@@ -187,7 +187,7 @@ if($stm->rowCount()>0){
                        window.location.reload();
                    }
                });
-               window.location.reload();
+            //    window.location.reload();
                 
             });
         });

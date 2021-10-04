@@ -420,7 +420,7 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
                     }
                 });
 
-                window.location.reload();
+                // window.location.reload();
             });
             // deposit
 
@@ -440,7 +440,7 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
                         console.log(response);
                     }
                 });
-                window.location.reload();
+                // window.location.reload();
 
             });
             // withdraw
@@ -461,7 +461,7 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
                         console.log(response);
                     }
                 });
-                window.location.reload();
+                // window.location.reload();
 
             });
 
@@ -482,7 +482,7 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
                         console.log(response);
                     }
                 });
-                window.location.reload();
+                // window.location.reload();
 
             });
             // investment
@@ -502,7 +502,7 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
                         console.log(response);
                     }
                 });
-                window.location.reload();
+                // window.location.reload();
 
             });
             // transaction
@@ -522,7 +522,7 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
                         console.log(response);
                     }
                 });
-                window.location.reload();
+                // window.location.reload();
 
             });
 

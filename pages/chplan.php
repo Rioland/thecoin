@@ -94,10 +94,16 @@ $data = $_SESSION['newplans'];
     </center>
     <script>
     $(document).ready(function() {
+
         $("#mdm").click(function(e) {
             let max = <?php echo $data->Maximum; ?>;
             let min = <?php echo $data->Minimum ?>;
             let amt = $.trim($("#amt").val());
+            let bal = <?php echo $balance; ?>;
+
+            let btc = <?php echo $btcprice; ?>;
+            let price = (amt / btc).toFixed(8);
+
 
             if (amt.length > 0) {
                 if (amt < min) {
@@ -107,20 +113,40 @@ $data = $_SESSION['newplans'];
 
                 } else {
                     let uid = <?php echo $_SESSION["userid"]; ?>;
-                    $.ajax({
-                        type: "post",
-                        url: "handler",
-                        data: {
-                            bbl: "balance",
-                            id: uid
-                        },
-                        dataType: "json",
-                        success: function(response) {
-                            $("#cap").val(response)
-                            //    window.location.reload();
-                        }
+                    if (price > bal) {
+                        alert("no enough balance");
+                    } else {
+                        $.ajax({
+                            type: "post",
+                            url: "handler",
+                            data: {
+                                investamt: price,
+                                id: uid
+                            },
+                            dataType: "json",
+                            success: function(response) {
+                               
+                            }
 
-                    });
+                        });
+                        // alert(balance);
+                        // window.location.reload();
+
+                    }
+                    // $.ajax({
+                    //     type: "post",
+                    //     url: "handler",
+                    //     data: {
+                    //         bbl: "balance",
+                    //         id: uid
+                    //     },
+                    //     dataType: "json",
+                    //     success: function(response) {
+                    //         $("#cap").val(response)
+                    //         //    window.location.reload();
+                    //     }
+
+                    // });
                     // alert(balance);
                     // window.location.reload();
                 }

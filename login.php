@@ -163,7 +163,7 @@ session_start();
     
                         <div class="passworddiv">
                             <label for="ppassword">Password</label>
-                            <input type="text" id="ppassword" name="ppassword">
+                            <input type="password" id="ppassword" name="ppassword">
                         </div>
 
                         <!-- <div class="inputti">

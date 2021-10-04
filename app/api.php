@@ -117,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (isset($_REQUEST['getState']) and $_REQUEST['getState'] == true) {
-         Database::getStatus();
+       echo  Database::getStatus();
     }
 
 }

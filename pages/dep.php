@@ -84,8 +84,6 @@ body {
     <script>
     $(document).ready(function() {
         let url = "app/api.php";
-
-
         $("#usd-amt").keyup(function(e) {
 
             let usdamt = $(this).val();
