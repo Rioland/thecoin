@@ -121,7 +121,7 @@ $data = $_SESSION['newplans'];
                             url: "handler",
                             data: {
                                 investamt: price,
-                                id: uid
+                                // id: uid
                             },
                             dataType: "json",
                             success: function(response) {

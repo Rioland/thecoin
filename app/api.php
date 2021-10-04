@@ -102,8 +102,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo json_encode(array("code" => 200, "message" => "set"));
     }
 
-    if (isset($_REQUEST['bbl']) and !empty($_REQUEST['bbl'])) {
-        echo $_REQUEST['bbl'];
+    if (isset($_REQUEST['investamt']) and !empty($_REQUEST['investamt'])) {
+        $amt= htmlentities($_REQUEST['investamt']);
+        Database::updateAccout("investment",$amt);
+        $id = $_SESSION["userid"];
+
+        $conn=Database::getConn();
+        $stm=$conn->prepare("UPDATE `account` SET `balance`=`balance`-:val WHERE `id`=:id");
+        $stm->bindParam(":val",$amt);
+        $stm->bindParam(":id",$id);
+        $stm->execute();
+         echo json_encode(array("code" => 200, "message" => "set"));
 
     }
 
