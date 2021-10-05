@@ -79,35 +79,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // pages
-    if (isset($_REQUEST['page']) and !empty($_REQUEST['page']) and isset($_REQUEST['action'])  and $_REQUEST['action']=="transform" ) {
-        header("Content-Type: application/json; charset=UTF-8");
+    if (isset($_REQUEST['page']) and !empty($_REQUEST['page']) and isset($_REQUEST['action']) and $_REQUEST['action'] == "transform") {
+        // header("Content-Type: application/json; charset=UTF-8");
         $_SESSION['page'] = $_REQUEST['page'];
         $_SESSION['title'] = $_REQUEST['title'];
-        echo json_encode(array("code" => 200, "message" => "set"));
+        echo "ok";
+
     }
     // coverter
 
     if (isset($_REQUEST['converttobtc']) and !empty($_REQUEST['converttobtc'])) {
-        header("Content-Type: application/json; charset=UTF-8");
+        // header("Content-Type: application/json; charset=UTF-8");
         $amt = htmlentities($_REQUEST['converttobtc']);
         $btcprice = $_REQUEST['btc'];
         $price = $amt / $btcprice;
         $price = $price * 100000000;
-        echo json_encode(array("code" => 200, "price" => $price), true);
+        // echo json_encode(array("code" => 200, "price" => $price), true);
+        echo $price;
+
 
     }
     if (isset($_REQUEST['planid']) and !empty($_REQUEST['planid'])) {
-        header("Content-Type: application/json; charset=UTF-8");
+        // header("Content-Type: application/json; charset=UTF-8");
         $_SESSION['page'] = $_REQUEST['page'];
         $_SESSION['title'] = $_REQUEST['title'];
         $id = $_REQUEST['planid'];
         $response = Database::subscribe($id);
-        echo json_encode(array("code" => 200, "message" => "set"));
+        // echo json_encode(array("code" => 200, "message" => "set"));
+        echo "ok";
+
     }
 // set investment
     if (isset($_REQUEST['investamt']) and !empty($_REQUEST['investamt'])) {
-        header("Content-Type: application/json; charset=UTF-8");
-       
+        // header("Content-Type: application/json; charset=UTF-8");
+
         $amt = htmlentities($_REQUEST['investamt']);
         Database::updateAccout("investment", $amt);
         $id = $_SESSION["userid"];
@@ -128,7 +133,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['page'] = $_REQUEST['page'];
         $_SESSION['title'] = $_REQUEST['title'];
 //    if(Database::cre)
-        echo json_encode(array("code" => 200, "message" => "set"));
+        // echo json_encode(array("code" => 200, "message" => "set"));
+        echo "ok";
+
 
     }
 
@@ -138,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // invest
     if (isset($_REQUEST['investamt']) and !empty($_REQUEST['investamt'])) {
-        header("Content-Type: application/json; charset=UTF-8");
+        // header("Content-Type: application/json; charset=UTF-8");
 
         $amt = htmlentities($_REQUEST['investamt']);
         Database::updateAccout("investment", $amt);
@@ -151,15 +158,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stm->execute();
         $_SESSION['page'] = $_REQUEST['page'];
         $_SESSION['title'] = $_REQUEST['title'];
+echo "ok";
 
-        echo json_encode(array("code" => 200, "message" => "set"));
 
     }
 
 // cashout
 
     if (isset($_REQUEST['withdrawamt']) and !empty($_REQUEST['withdrawamt'])) {
-        header("Content-Type: application/json; charset=UTF-8");
+        // header("Content-Type: application/json; charset=UTF-8");
 
         $withdrawamt = htmlentities($_REQUEST['withdrawamt']);
 
@@ -184,12 +191,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $stm->execute();
 
-        echo json_encode(array("code" => 200, "message" => "set"));
+        echo "ok";
 
     }
 // updating methods
-    if( isset($_REQUEST['']) ){
-      
+    if (isset($_REQUEST['update-payment'])) {
+
+        $method = htmlentities($_REQUEST['method']);
+        $address = htmlentities($_REQUEST['address']);
+
+        $response = Database::setPayoutMethod($address, $method);
+        echo $response;
+
+    }
+
+    // updating password
+    if (isset($_REQUEST['update-password'])) {
+
+        $password = htmlentities($_REQUEST['password']);
+        $cpassword = htmlentities($_REQUEST['cpassword']);
+
+        $response = Database::updatePassword($password);
+        echo $response;
+
+    }
+
+// update-user
+    if (isset($_REQUEST['data'])) {
+
+        parse_str($_REQUEST['data'],$datas);
+        $response=Database::updateProfile($datas);
+       print_r($response);
+
     }
 
 }

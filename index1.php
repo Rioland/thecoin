@@ -9,6 +9,7 @@
 </head>
 <body>
     <center>
+        
         <header class="l-header">
             <nav class="nav bd-grid">
                 <div class="textflex">
@@ -24,13 +25,13 @@
         
                     <div class="navminwidth">
                         <ul class="nav_list">
-                            <li class="nav_item active"><a href="#" class="nav_link"><i class="fas fa-home"></i>Home</a></li>
-                            <li class="nav_item"><a href="#" class="nav_link"><i class="fas fa-clone"></i>Account</a>
+                            <li class="nav_item active"><a href="home" class="nav_link"><i class="fas fa-home"></i>Home</a></li>
+                            <li class="nav_item"><a href="account" class="nav_link"><i class="fas fa-clone"></i>Account</a>
                                 <div class="sub-menu-1">
                                     <ul>
-                                        <li><a href="#" class="sub-style">My Account</a></li>
-                                        <li><a href="login.html" class="sub-style">Login</a></li>
-                                        <li><a href="registration.html" class="sub-style">Register</a></li>
+                                        <li><a href="account" class="sub-style">My Account</a></li>
+                                        <li><a href="signin" class="sub-style">Login</a></li>
+                                        <li><a href="signup" class="sub-style">Register</a></li>
                                         <li><a href="#" class="sub-style">Forgot Password</a></li>
                                     </ul>
                                 </div>
@@ -38,10 +39,10 @@
                             <li class="nav_item"><a href="#" class="nav_link"><i class="fas fa-clone"></i> Docs</a>
                                 <div class="sub-menu-1">
                                     <ul>
-                                        <li><a href="aboutus.html" class="sub-style">About Us</a></li>
+                                        <li><a href="about" class="sub-style">About Us</a></li>
                                         <li><a href="#" class="sub-style">Testimonials</a></li>
                                         <li><a href="pivacypolicy.html" class="sub-style">Privacy Policy</a></li>
-                                        <li><a href="Terms.html" class="sub-style">Terms And Conditions</a></li>
+                                        <li><a href="team" class="sub-style">Terms And Conditions</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -62,13 +63,13 @@
                                     <div class="nav__items">
                                         <!-- <h3 class="nav__subtitle">Profile</h3> -->
         
-                                        <a href="#" class="nav__link">
+                                        <a href="home" class="nav__link">
                                             <i class="fas fa-home nav__icon"></i>
                                             <span class="nav__name">Home</span>
                                         </a>
         
                                         <div class="nav__dropdown">
-                                            <a href="#" class="nav__link .active">
+                                            <a href="account" class="nav__link .active">
                                                 <i class="fas fa-user nav__icon"></i>
                                                 <span class="nav__name">Account</span>
                                                 <i class="fas fa-chevron-down nav__icon nav__dropdown-icon"></i>
@@ -77,9 +78,9 @@
                                             <div class="nav__dropdown-collapse">
                                                 <div class="nav__dropdown-content">
                                                     <a href="" class="nav__dropdown-item">My Account</a><hr>
-                                                    <a href="#" class="nav__dropdown-item">Login</a><hr>
-                                                    <a href="#" class="nav__dropdown-item">Register</a><hr>
-                                                    <a href="#" class="nav__dropdown-item">Forgot Password</a><hr>
+                                                    <a href="signin" class="nav__dropdown-item">Login</a><hr>
+                                                    <a href="signup" class="nav__dropdown-item">Register</a><hr>
+                                                    <a href="forgetpassword" class="nav__dropdown-item">Forgot Password</a><hr>
                                                 </div>
                                             </div>
                                         </div>
@@ -123,14 +124,17 @@
                     </div>
                 </div>
             </nav>
+            <div style="height:62px; background-color: #1D2330; overflow:hidden; box-sizing: border-box; border: 1px solid #282E3B; border-radius: 4px; text-align: right; line-height:14px; block-size:62px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #262B38;padding:1px;padding: 0px; margin: 0px; width: 100%;"><div style="height:40px; padding:0px; margin:0px; width: 100%;"><iframe src="https://widget.coinlib.io/widget?type=horizontal_v2&theme=dark&pref_coin_id=1508&invert_hover=no" width="100%" height="36px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe></div><div style="color: #626B7F; line-height: 14px; font-weight: 400; font-size: 11px; box-sizing: border-box; padding: 2px 6px; width: 100%; font-family: Verdana, Tahoma, Arial, sans-serif;"><a href="https://coinlib.io" target="_blank" style="font-weight: 500; color: #626B7F; text-decoration:none; font-size:11px">Cryptocurrency Prices</a>&nbsp;by Riotech</div></div> 
+
+
         </header>
 
         <!-- ========================================     SECTION 1   ======================================================= -->
         <section class="sec1">
             <h2 class="wordings">Maximium Profits From Crypto Trade</h2>
             <div class="buttss">
-                <button class="butt1">Register</button>
-                <button class="butt2">Login</button>
+               <a href="signup"> <button class="butt1">Register</button></a> 
+              <a href="signin"> <button class="butt2">Login</button></a>  
             </div>
         </section>
 
@@ -139,7 +143,7 @@
             <div class="youtbtab">
                 <div class="side1">
                    <h1>We maintain the trade pattern</h1>
-                   <iframe width="500" height="345" src="https://www.youtube.com/embed/YYcwS98_L8s?autoplay=1&mute=1&loop=1"> </iframe>
+                   <iframe width="500" height="345" src="https://www.youtube.com/embed/YYcwS98_L8s?autoplay=0&mute=1&loop=1"> </iframe>
                 </div>
                 <div class="side2">
                     <h1>Listing the actual prices.</h1>
@@ -288,7 +292,10 @@
             
             </div><br><br><br>
         </section><br><br>
-
+<?php
+//  $root=$_SERVER["SERVER_NAME"];
+require "./coinshow.php";
+?>
         <!--============================================  SECTION 4   =========================================================-->
             <h1 class="sec4h1">INVESTMENT PLANS</h1>
 
@@ -638,7 +645,7 @@
                     <div class="backgdlf">
                         <div class="imgtxtflexxi">
                             <div class="imgjustfy">
-                                <img src="images/pexeluser2.jpg" alt="member picture">
+                                <img src="./images/pexeluser2.jpg" alt="member picture">
                             </div>
                             <div class="backgtexxti">
                                 <div class="icon">
@@ -1502,10 +1509,10 @@
                         <h3>Links <div class="underline"><span></span></div>
                         </h3>
                         <ul>
-                            <li><a href="">Home</a></li>
-                            <li><a href="">My account</a></li>
-                            <li><a href="">About Us</a></li>
-                            <li><a href="">Contact Us</a></li>
+                            <li><a href="home">Home</a></li>
+                            <li><a href="account">My account</a></li>
+                            <li><a href="about">About Us</a></li>
+                            <li><a href="contact">Contact Us</a></li>
                         </ul>
                     </div>
                     <div class="colsec9">

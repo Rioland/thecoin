@@ -174,23 +174,21 @@ class Database
 
     }
 
-
-   public static function getUserDetails(){
+    public static function getUserDetails()
+    {
         $myconn = self::getConn();
         $id = $_SESSION["userid"];
         $qury = "SELECT * FROM `users` WHERE id=:id";
         $stm = $myconn->prepare($qury);
-        $stm->bindParam(":id",$id);
+        $stm->bindParam(":id", $id);
         $stm->execute();
         // if($stm->rowCount()>0){
-        //   $row= 
-          return $stm->fetch();
+        //   $row=
+        return $stm->fetch();
 
         // }
         // return array();
-   }
-
-
+    }
 
     public static function getEmail()
     {
@@ -224,7 +222,51 @@ class Database
 
     }
 
-     public static function getPayOutMethod(): string
+    //    public static $id = $_SESSION["userid"];
+
+    public static function setPayoutMethod($addr, $meth): string
+    {
+        $myconn = self::getConn();
+        $id = $_SESSION["userid"];
+        $stm = $myconn->prepare("SELECT * FROM `address` WHERE `id`=:id");
+        $stm->bindParam(":id", $id);
+        $stm->execute();
+
+        if ($stm->rowCount() > 0) {
+
+            $stm = $myconn->prepare("UPDATE `address` SET `address`=:addr,`method`=:meth WHERE `id`=:id");
+            $stm->bindParam(":id", $id);
+            $stm->bindParam(":addr", $addr);
+            $stm->bindParam(":meth", $meth);
+            $stm->execute();
+            if ($stm->rowCount() > 0) {
+                return "Succeessful";
+
+            } else {
+                return "Noting to change";
+
+            }
+
+        } else {
+
+            $stm = $myconn->prepare("INSERT INTO `address`(`id`, `address`, `method`)
+           VALUES (:id,:addr,:meth)");
+            $stm->bindParam(":id", $id);
+            $stm->bindParam(":addr", $addr);
+            $stm->bindParam(":meth", $meth);
+
+            if ($stm->execute()) {
+                return "Succeessful";
+            } else {
+                return "something went wrong: cant save for now, contact the costomer care";
+
+            }
+
+        }
+
+    }
+
+    public static function getPayOutMethod(): string
     {
         $myconn = self::getConn();
         $id = $_SESSION["userid"];
@@ -241,8 +283,55 @@ class Database
 
     }
 
+    public static function updatePassword($pass): string
+    {
+        $myconn = self::getConn();
+        $id = $_SESSION["userid"];
+        $stm = $myconn->prepare("UPDATE `users` SET `password`=:pass WHERE `id`=:id");
+        $stm->bindParam(":pass", md5($pass));
+        $stm->bindParam(":id", $id);
+        $stm->execute();
+        if ($stm->rowCount() > 0) {
+            return "succussful";
+        } else {
+            return "noting to chage";
 
+        }
 
+    }
+
+    public static function updateProfile($data): string
+    {
+        $myconn = self::getConn();
+        $id = $_SESSION["userid"];
+        $qry = "UPDATE `users` SET `email`=:em,`country`=:ctry,
+        `name`=:fn,`phone`=:ph,`gender`=:gen,`last_name`=:ln,`address1`=:add1,
+        `address2`=:add2,`poster_code`=:pcode,`state`=:st,`city`=:cty WHERE `id`=:id";
+        $stm = $myconn->prepare($qry);
+        $stm->bindParam(":em", $data['email']);
+        $stm->bindParam(":ctry", $data['ctry']);
+        $stm->bindParam(":fn", $data['fname']);
+        $stm->bindParam(":ln", $data['lname']);
+        $stm->bindParam(":ph", $data['phone']);
+        $stm->bindParam(":gen", $data['gender']);
+        $stm->bindParam(":add1", $data['address1']);
+
+        $stm->bindParam(":add2", $data['address2']);
+        $stm->bindParam(":pcode", $data['pcode']);
+        $stm->bindParam(":st", $data['state']);
+        $stm->bindParam(":cty", $data['city']);
+
+        $stm->bindParam(":id", $id);
+
+        $stm->execute();
+        if ($stm->rowCount() > 0) {
+            return "succussful";
+        } else {
+            return "noting to chage";
+
+        }
+
+    }
 
     public static function GetCode($address)
     {

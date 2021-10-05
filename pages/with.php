@@ -22,7 +22,7 @@
 
             <p class="payoutti">Payout Method: <?php echo Database:: getPayOutMethod();   ?></p>
             <div class="payoutdiv">
-                <p>Bitcoin address</p> <span><?php echo $addr;   ?></span>
+                <p>Bitcoin address</p> <span><?php echo Database:: getPayOutAddress();   ?></span>
                 <!-- <button class="butstylee">Change</button> -->
             </div>
 
