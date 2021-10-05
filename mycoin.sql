@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 01, 2021 at 04:33 PM
+-- Generation Time: Oct 05, 2021 at 04:13 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -42,7 +42,20 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`sn`, `id`, `balance`, `investment`, `earns`, `withdraw`, `referer`) VALUES
-(1, '3461693015', '0', '0', '0', '0', '0');
+(1, '3461693015', '0.00067897', '0', '0', '0', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `address`
+--
+
+CREATE TABLE `address` (
+  `sn` int(11) NOT NULL,
+  `id` varchar(100) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `method` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -130,7 +143,9 @@ CREATE TABLE `invoices` (
 INSERT INTO `invoices` (`id`, `code`, `address`, `price`, `status`, `uid`, `ip`) VALUES
 (1, 'g7daugeH3NxcRZHNRrhjolSOI', '1NbodSdJCNp5FApUcnDaTDckfXTTkNkYr1', 100, -1, '3461693015', '::1'),
 (2, 'IY9TcHpmIERDfrq7voCfcohx1', '1NbodSdJCNp5FApUcnDaTDckfXTTkNkYr1', 100, 2, '3461693015', '::1'),
-(3, 'XDjQUBRIpa7N1K06xPQ11qLuo', '1NbodSdJCNp5FApUcnDaTDckfXTTkNkYr1', 100, -1, '3461693015', '::1');
+(3, 'XDjQUBRIpa7N1K06xPQ11qLuo', '1NbodSdJCNp5FApUcnDaTDckfXTTkNkYr1', 100, 0, '3461693015', '::1'),
+(4, 'ihVyGrLddDw1AlUIXyu1noRz1', '1NbodSdJCNp5FApUcnDaTDckfXTTkNkYr1', 100, -1, '3461693015', '::1'),
+(5, '9wuDT9nAMcBeNQPyDmIJ6cdAr', '1NbodSdJCNp5FApUcnDaTDckfXTTkNkYr1', 100, -1, '3461693015', '::1');
 
 -- --------------------------------------------------------
 
@@ -218,7 +233,7 @@ CREATE TABLE `users` (
   `id` varchar(40) NOT NULL,
   `email` varchar(1000) NOT NULL,
   `password` varchar(1000) NOT NULL,
-  `country` varchar(1000) NOT NULL,
+  `country` varchar(1000) DEFAULT NULL,
   `auth_token` varchar(1000) DEFAULT NULL,
   `reset_pass_token` varchar(500) DEFAULT NULL,
   `token_date` varchar(1000) DEFAULT NULL,
@@ -227,15 +242,36 @@ CREATE TABLE `users` (
   `picture` varchar(1000) DEFAULT NULL,
   `phone` varchar(1000) DEFAULT NULL,
   `gender` varchar(1000) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp()
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `last_name` varchar(500) DEFAULT NULL,
+  `address1` text DEFAULT NULL,
+  `address2` text DEFAULT NULL,
+  `poster_code` text DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`sn`, `id`, `email`, `password`, `country`, `auth_token`, `reset_pass_token`, `token_date`, `is_verify`, `name`, `picture`, `phone`, `gender`, `created_at`) VALUES
-(3, '3461693015', 'riolandadedamola@gmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 'Unknown', '#4bkxi86up3@m1ysag7qedvf0925cjlrtownhz', NULL, NULL, NULL, NULL, 'iMarket.png', '08149916721', NULL, '2021-10-01 13:21:56');
+INSERT INTO `users` (`sn`, `id`, `email`, `password`, `country`, `auth_token`, `reset_pass_token`, `token_date`, `is_verify`, `name`, `picture`, `phone`, `gender`, `created_at`, `last_name`, `address1`, `address2`, `poster_code`, `state`, `city`) VALUES
+(3, '3461693015', 'riolandadedamola@gmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 'Unknown', '#4bkxi86up3@m1ysag7qedvf0925cjlrtownhz', NULL, NULL, NULL, 'Adedamola', 'iMarket.png', '08149916721', NULL, '2021-10-01 13:21:56', 'Emmanuel', NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `withdraw`
+--
+
+CREATE TABLE `withdraw` (
+  `sn` int(11) NOT NULL,
+  `id` varchar(255) NOT NULL,
+  `method` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `amt` double NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
@@ -245,6 +281,12 @@ INSERT INTO `users` (`sn`, `id`, `email`, `password`, `country`, `auth_token`, `
 -- Indexes for table `account`
 --
 ALTER TABLE `account`
+  ADD PRIMARY KEY (`sn`);
+
+--
+-- Indexes for table `address`
+--
+ALTER TABLE `address`
   ADD PRIMARY KEY (`sn`);
 
 --
@@ -284,6 +326,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`sn`);
 
 --
+-- Indexes for table `withdraw`
+--
+ALTER TABLE `withdraw`
+  ADD PRIMARY KEY (`sn`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -292,6 +340,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `account`
   MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `address`
+--
+ALTER TABLE `address`
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `apis`
@@ -303,7 +357,7 @@ ALTER TABLE `apis`
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `notification`
@@ -328,6 +382,12 @@ ALTER TABLE `plans`
 --
 ALTER TABLE `users`
   MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `withdraw`
+--
+ALTER TABLE `withdraw`
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

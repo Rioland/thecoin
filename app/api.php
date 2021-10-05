@@ -187,5 +187,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo json_encode(array("code" => 200, "message" => "set"));
 
     }
+// updating methods
+    if( isset($_REQUEST['']) ){
+      
+    }
 
 }
