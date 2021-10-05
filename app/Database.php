@@ -168,10 +168,29 @@ class Database
 
             return $conn;
         } catch (PDOException $e) {
+            // echo $e;
             echo json_encode(array("message" => $e->getMessage(), "code" => "404"));
         }
 
     }
+
+
+   public static function getUserDetails(){
+        $myconn = self::getConn();
+        $id = $_SESSION["userid"];
+        $qury = "SELECT * FROM `users` WHERE id=:id";
+        $stm = $myconn->prepare($qury);
+        $stm->bindParam(":id",$id);
+        $stm->execute();
+        // if($stm->rowCount()>0){
+        //   $row= 
+          return $stm->fetch();
+
+        // }
+        // return array();
+   }
+
+
 
     public static function getEmail()
     {
@@ -309,7 +328,7 @@ class Database
             $stm = $myconn->prepare($query);
             $stm->bindParam(":id", $id);
             $stm->execute();
-            $res = $stm->fetch(PDO::FETCH_OBJ);
+            $res = $stm->fetch();
             return $res->balance;
 
         } catch (\Throwable $th) {

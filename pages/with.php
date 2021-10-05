@@ -1,3 +1,4 @@
+
 <center>
     <section class="sec51">
         <div class="withdrawwl">
@@ -21,17 +22,28 @@
 
             <p class="payoutti">Payout Method: <?php echo Database:: getPayOutMethod();   ?></p>
             <div class="payoutdiv">
-                <p>Bitcoin address</p> <span><?php echo Database:: getPayOutAddress();   ?></span>
+                <p>Bitcoin address</p> <span><?php echo $addr;   ?></span>
                 <!-- <button class="butstylee">Change</button> -->
             </div>
 
             <div class="amountdiv">
                 <label for="amount">Amount in USD </label>
-                <input type="number" id="amount" name="amount" class="amountstyl" placeholder="0.00 ">
+                <input type="number" id="amount" name="amount" class="amountstyl amount" placeholder="0.00 ">
             </div>
-
+           <br>
+           <br>
             <div class="buttonwithdrawl">
+                <?php
+                  if(strtolower(Database:: getPayOutMethod())=="no address" or strtolower( Database:: getPayOutMethod())=="no method" ){
+
+                  }else{
+                      ?>
                 <button class="buttwithdrw" id="wit">Withdraw</button>
+
+
+                <?php
+                  }
+                ?>
             </div>
         </div>
     </section>
@@ -39,26 +51,25 @@
 <script>
 $(document).ready(function() {
     $("#wit").click(function(e) {
-        let amt = $.trim($("#amount").val());
+        let amt = $.trim($(".amount").val());
         let bal = <?php echo $balance; ?>;
-
+        // alert(amt);
         let btc = <?php echo $btcprice; ?>;
         let price = (amt / btc).toFixed(8);
-        let addr = <?php  echo strtolower($addr);  ?>;
-        let mod = <?php  echo strtolower($method);  ?>;
-
+      
+    // alert(price);
         if (amt.length > 0) {
             if (price > bal) {
                 alert("no enough balance");
             } else {
-                if (addr != "no address" && mod != "no method") {
+                // if (addr != "no address" && mod != "no method") {
                     $.ajax({
                         type: "post",
                         url: "handler",
                         data: {
                             withdrawamt: price,
-                            page: "pages/home.php",
-                            title: "home"
+                            // page: "pages/home.php",
+                            // title: "home"
                             // id: uid
                         },
                         dataType: "json",
@@ -68,9 +79,9 @@ $(document).ready(function() {
 
                     });
 
-                } else {
-                    alert("Add payment in the profile");
-                }
+                // } else {
+                //     alert("Add payment in the profile");
+                // }
 
 
             }

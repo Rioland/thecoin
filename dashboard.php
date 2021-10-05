@@ -11,8 +11,6 @@ $width = Database::getWithdrawBalance();
 $referer = Database::getRefererBalance();
 $pic = Database::getPicture();
 $btcprice = Database::getBTCPrice("USD");
-$addr=Database::getPayOutAddress();
-$method-Database::getPayOutMethod();
 // $usdtobtc=Database::USDtoBTC();
 
 // session_start();
@@ -31,8 +29,8 @@ $method-Database::getPayOutMethod();
  <!-- <link rel="stylesheet" href="external.css"> -->
   <!-- <link rel="stylesheet" href="myaccount.css"> -->
     <!-- <link rel="stylesheet" href="plansphp.css"> -->
-<link rel="stylesheet" href="withdraw.css">
-    <link rel="stylesheet" href="fontawesome-free-5.15.1-web/css/all.css">
+
+    <link rel="stylesheet" href="images/fontawesome-free-5.15.1-web/css/all.css">
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css' rel='stylesheet'>
     <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
     <script type='text/javascript' src=''></script>
@@ -238,6 +236,51 @@ $method-Database::getPayOutMethod();
         width: 40px;
         height: 40px;
     }
+    /* hhshshshshshshs */
+    body {
+    /* background: rgb(99, 39, 120) */
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
     </style>
 </head>
 
@@ -413,16 +456,18 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
                     url: "handler",
                     data: {
                         page: "pages/home.php",
-                        title: "home"
+                        title: "home",
+                        action:"transform"
                     },
-                    dataType: "json",
+                    
                     success: function(response) {
+                         var jsonData = JSON.parse(response);
                         window.location.reload();
-                        console.log(response);
+                        console.log(jsonData);
                     }
                 });
 
-                // window.location.reload();
+                window.location.reload();
             });
             // deposit
 
@@ -433,16 +478,17 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
                     url: "handler",
                     data: {
                         page: "pages/dep.php",
-                        title: "deposit"
+                        title: "deposit",
+                         action:"transform"
                     },
-                    dataType: "json",
+                    // 
                     success: function(response) {
+                        var jsonData = JSON.parse(response);
                         window.location.reload();
-
-                        console.log(response);
+                        console.log(jsonData);
                     }
                 });
-                // window.location.reload();
+                window.location.reload();
 
             });
             // withdraw
@@ -454,16 +500,17 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
                     url: "handler",
                     data: {
                         page: "pages/with.php",
-                        title: "withdraw"
+                        title: "withdraw",
+                         action:"transform"
                     },
-                    dataType: "json",
+                    
                     success: function(response) {
+                         var jsonData = JSON.parse(response);
                         window.location.reload();
-
-                        console.log(response);
+                        console.log(jsonData);
                     }
                 });
-                // window.location.reload();
+                window.location.reload();
 
             });
 
@@ -475,16 +522,17 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
                     url: "handler",
                     data: {
                         page: "pages/prof.php",
-                        title: "profile"
+                        title: "profile",
+                         action:"transform"
                     },
-                    dataType: "json",
+                    
                     success: function(response) {
+                         var jsonData = JSON.parse(response);
                         window.location.reload();
-
-                        console.log(response);
+                        console.log(jsonData);
                     }
                 });
-                // window.location.reload();
+                window.location.reload();
 
             });
             // investment
@@ -495,33 +543,35 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
                     url: "handler",
                     data: {
                         page: "pages/inv.php",
-                        title: "investment"
+                        title: "investment",
+                         action:"transform"
                     },
-                    dataType: "json",
+                    
                     success: function(response) {
+                         var jsonData = JSON.parse(response);
                         window.location.reload();
-
-                        console.log(response);
+                        console.log(jsonData);
                     }
                 });
-                // window.location.reload();
+                window.location.reload();
 
             });
             // transaction
             $("#tran").click(function(e) {
-                
+               
                 $.ajax({
                     type: "post",
                     url: "handler",
                     data: {
                         page: "pages/trans.php",
-                        title: "transaction"
+                        title: "transaction",
+                         action:"transform"
                     },
-                    dataType: "json",
+                    
                     success: function(response) {
+                         var jsonData = JSON.parse(response);
                         window.location.reload();
-
-                        console.log(response);
+                        console.log(jsonData);
                     }
                 });
                 // window.location.reload();

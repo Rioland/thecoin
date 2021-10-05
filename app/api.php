@@ -79,7 +79,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // pages
-    if (isset($_REQUEST['page']) and !empty($_REQUEST['page'])) {
+    if (isset($_REQUEST['page']) and !empty($_REQUEST['page']) and isset($_REQUEST['action'])  and $_REQUEST['action']=="transform" ) {
+        header("Content-Type: application/json; charset=UTF-8");
         $_SESSION['page'] = $_REQUEST['page'];
         $_SESSION['title'] = $_REQUEST['title'];
         echo json_encode(array("code" => 200, "message" => "set"));
@@ -87,6 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // coverter
 
     if (isset($_REQUEST['converttobtc']) and !empty($_REQUEST['converttobtc'])) {
+        header("Content-Type: application/json; charset=UTF-8");
         $amt = htmlentities($_REQUEST['converttobtc']);
         $btcprice = $_REQUEST['btc'];
         $price = $amt / $btcprice;
@@ -95,6 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     }
     if (isset($_REQUEST['planid']) and !empty($_REQUEST['planid'])) {
+        header("Content-Type: application/json; charset=UTF-8");
         $_SESSION['page'] = $_REQUEST['page'];
         $_SESSION['title'] = $_REQUEST['title'];
         $id = $_REQUEST['planid'];
@@ -103,6 +106,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 // set investment
     if (isset($_REQUEST['investamt']) and !empty($_REQUEST['investamt'])) {
+        header("Content-Type: application/json; charset=UTF-8");
+       
         $amt = htmlentities($_REQUEST['investamt']);
         Database::updateAccout("investment", $amt);
         $id = $_SESSION["userid"];
@@ -117,6 +122,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 // set deposit
     if (isset($_REQUEST['deposit']) and $_REQUEST['deposit'] == true) {
+        header("Content-Type: application/json; charset=UTF-8");
+
         $_SESSION['amt'] = htmlentities($_REQUEST['amt']);
         $_SESSION['page'] = $_REQUEST['page'];
         $_SESSION['title'] = $_REQUEST['title'];
@@ -131,6 +138,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // invest
     if (isset($_REQUEST['investamt']) and !empty($_REQUEST['investamt'])) {
+        header("Content-Type: application/json; charset=UTF-8");
+
         $amt = htmlentities($_REQUEST['investamt']);
         Database::updateAccout("investment", $amt);
         $id = $_SESSION["userid"];
@@ -150,6 +159,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // cashout
 
     if (isset($_REQUEST['withdrawamt']) and !empty($_REQUEST['withdrawamt'])) {
+        header("Content-Type: application/json; charset=UTF-8");
+
         $withdrawamt = htmlentities($_REQUEST['withdrawamt']);
 
         Database::updateAccout("withdraw", $amt);

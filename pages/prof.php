@@ -1,88 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="choplan.css">
-    <link rel="stylesheet" href="fontawesome-free-5.15.1-web/css/all.css">
-    <title>Profile Details</title>
-</head>
-<body>
-    <center>
-        <section class="sec21">
-            <div class="overallflexsec21">
-                <div class="colsec21">
-                    <div class="inputs">
-                        <h1>Profile Details</h1>
-                        <div class="inputimg">
-                            <img src="" alt="Profile Picture">
-                        </div>
-                        <h4><b>Upload your new profile image.</b></h4>
-                        <input type="file" name="picture" id="picture" class="inputtii">
-                        <p>You can change your profile picture on <b>Gravatar</b></p>
-                     </div>
-                    
-                        <div class="fieldflex">
-                            <div class="flex1">
-                                <label for="Username">Username *</label><br>
-                                <input type="text" name="Username" id="Username" placeholder="Ongod">
-                            </div>
-                    
-                            <div class="flex2">
-                                <label for="Username">User Email *</label><br>
-                                <input type="Email" name="Username" id="Username" placeholder="aribigbola2018@gmail.com"> <br><br>
-                    
-                                <label for="Username">Bitcoin Address *</label><br>
-                                <input type="text" name="Username" id="Username" placeholder="jahsissksnsowunsmslaoanhniajnssjns"> <br>
+<?php
 
-                                <div class="butalign">
-                                    <button type="submit" class="savvii">SAVE CHANGES</button>
-                                </div>
-                            </div>
+$userdata=Database::getUserDetails();
+?>
+
+
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
+                    width="150px"
+                    src="app/uploadimageF/<?php print(trim($userdata->picture));  ?>"><span
+                    class="font-weight-bold"> <?php print(trim($userdata->name ." ". $userdata->last_name ));?></span><span class="text-black-50"> <?php print(trim($userdata->email));?></span><span>
+                </span></div>
+        </div>
+        <!-- <form action="handler" method="post"> -->
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Profile Settings</h4>
                     </div>
-                </div>
-
-                <div class="colsec21">
-                    <h1 class="colsec21h1">Edit Details</h1>
-                    <div class="fieldflexcolsec2">
-                        <div class="flex1">
-                            <label for="Username">First name *</label><br>
-                            <input type="text" name="firstname" id="firstname" placeholder="h">
-                        </div>
-                    
-                        <div class="flex2">
-                            <label for="Username">Last name *</label><br>
-                            <input type="text" name="lastname" id="lastname"> <br><br><br>
-                    
-                        </div>
-
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control"
+                                placeholder="first name" value="
+                    <?php print(trim($userdata->name));  ?>
+                    "></div>
+                        <div class="col-md-6"><label class="labels">Surname</label><input type="text"
+                                class="form-control" value="
+                    <?php print(trim($userdata->last_name));  ?>
+                    " placeholder="surname"></div>
                     </div>
-                    <div class="gridnorm">
-                        <label for="displayname">Dispaly name *</label><br>
-                        <input type="text" name="displayname" id="displayname" placeholder="Ongod"> 
-                        <span class="spanni">This will be how your name will be displayed in the account section and in reviews</span><br><br>
-                    
-                        <label for="editemail">Email Address*</label><br>
-                        <input type="Email" name="editemail" id="editemail" placeholder="aribigbola2018@gmail.com"> <br><br>
-
-                        <h2 class="h2stylii">Password Change</h2><br><br>
-
-                        <label for="password">Current Password* <span class="passstyle">(leave blank to leave unchanged)</span></label><br>
-                        <input type="password" name="password" id="password"> <br><br>
-
-                        <label for="newpassword">New Password* <span class="passstyle">(leave blank to leave unchanged)</span></label><br>
-                        <input type="password" name="newpassword" id="newpassword"> <br><br>
-
-                        <label for="confirmpassword">Confirm Password* <span class="passstyle">(leave blank to leave unchanged)</span></label><br>
-                        <input type="password" name="confirmpassword" id="confirmpassword"> <br><br>
-
-                        <div class="butaligncolsec2">
-                            <button type="submit" class="savviicol2">SAVE CHANGES</button>
-                        </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text"
+                                class="form-control" placeholder="enter phone number" value="
+                    <?php print(trim($userdata->phone));  ?>
+                    "></div>
+                        <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text"
+                                class="form-control" placeholder="enter address line 1" value="
+                    <?php print(trim($userdata->address1));  ?>
+                    "></div>
+                        <div class="col-md-12"><label class="labels">Address Line 2</label><input type="text"
+                                class="form-control" placeholder="enter address line 2" value="
+                    <?php print(trim($userdata->address2));  ?>
+                    "></div>
+                        <div class="col-md-12"><label class="labels">Postcode</label><input type="text"
+                                class="form-control" placeholder="enter address line 2" value="
+                    <?php print(trim($userdata->poster_code));  ?>
+                    "></div>
+                        <!-- <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div> -->
+                        <div class="col-md-12"><label class="labels">City</label><input type="text" class="form-control"
+                                placeholder="enter address line 2" value="
+                     <?php print(trim($userdata->city));?>
+                    "></div>
+                        <div class="col-md-12"><label class="labels">Email ID</label><input type="text"
+                                class="form-control" placeholder="enter email id" readonly="true" value="
+                     <?php print(trim($userdata->email));?>
+                    "></div>
+                        <div class="col-md-12"><label class="labels">Gender</label><input type="text"
+                                class="form-control" placeholder="education" value="
+                     <?php print(trim($userdata->gender));?>
+                    "></div>
                     </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6"><label class="labels">Country</label><input type="text"
+                                class="form-control" placeholder="country" value="
+                     <?php print(trim($userdata->country));?>
+                    "></div>
+                        <div class="col-md-6"><label class="labels">State/Region</label><input type="text"
+                                class="form-control" value="
+                     <?php print(trim($userdata->state));?>
+                    " placeholder="state"></div>
+                    </div>
+                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save
+                            Profile</button></div>
                 </div>
             </div>
-        </section>
-    </center>
-</body>
-</html>
+        <!-- </form> -->
+        <!-- <form action="handler" method="post"> -->
+
+
+            <div class="col-md-4">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center experience"><span>Payment
+                            details</span><span class="border px-3 p-1 add-experience"><i
+                                class="fa fa-plus"></i>&nbsp;Save</span></div><br>
+                    <div class="col-md-12"><label class="labels">Method of payment:ony(BTC,ETH,BCH,LITC.USDT)
+                        </label><input type="text" class="form-control" placeholder="BTC" value=""></div> <br>
+                    <div class="col-md-12"><label class="labels">Address:</label><input type="text" class="form-control"
+                            placeholder="Address" value=""></div>
+                </div>
+        <!-- </form> -->
+        <!-- <form action="handler" method="post"> -->
+
+
+            <!-- password -->
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center experience"><span>Reset
+                        password</span><span class="border px-3 p-1 add-experience"><i
+                            class="fa fa-plus"></i>&nbsp;Save</span></div><br>
+                <div class="col-md-12"><label class="labels">new password </label><input type="text"
+                        class="form-control" placeholder="Password" value=""></div> <br>
+                <div class="col-md-12"><label class="labels">Comfirm-password:</label><input type="text"
+                        class="form-control" placeholder="Comfirm password" value=""></div>
+            </div>
+
+        <!-- </form> -->
+    </div>
+
+</div>
+
+
+</div>
+</div>
+</div>

@@ -184,6 +184,7 @@ if($stm->rowCount()>0){
                    },
                    dataType: "json",
                    success: function (response) {
+                    //    alert(response);
                        window.location.reload();
                    }
                });
