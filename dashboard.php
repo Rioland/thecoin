@@ -240,9 +240,7 @@ $id=$_SESSION["userid"];
         height: 40px;
     }
     /* hhshshshshshshs */
-    body {
-    /* background: rgb(99, 39, 120) */
-}
+ 
 
 .form-control:focus {
     box-shadow: none;
