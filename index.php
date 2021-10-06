@@ -46,7 +46,7 @@
                                 </div>
                             </li>
                             <li class="nav_item"><a href="#" class="nav_link"><i class="fas fa-dollar-sign"></i></i>Payouts</a></li>
-                            <li class="nav_item"><a href="contact.html" class="nav_link"><i class="fas fa-phone"></i>Contact Us</a></li>
+                            <li class="nav_item"><a href="messageus" class="nav_link"><i class="fas fa-phone"></i>Contact Us</a></li>
                         </ul>
                     </div>
                     <!-- ==========NAVMAXWIDTH=========== -->
@@ -106,7 +106,7 @@
                                             <span class="nav__name">Payouts</span>
                                         </a>
 
-                                        <a href="#" class="nav__link">
+                                        <a href="messageus" class="nav__link">
                                             <i class="fas fa-compass nav__icon"></i>
                                             <span class="nav__name">Contact Us</span>
                                         </a>
@@ -627,7 +627,7 @@
         <section class="sec6">
             <div class="sec6msg">
                 <h1>Join Over 20,000 Registered Members Making Profits On CRYPTOTRADEGAIN</h1><br>
-                <a href="#"><button type="button" class="sec6msgbutt">CONTACT US</button></a>
+                <a href="messageus"><button type="button" class="sec6msgbutt">CONTACT US</button></a>
             </div>
         </section>
 
@@ -1505,7 +1505,7 @@
                             <li><a href="">Home</a></li>
                             <li><a href="">My account</a></li>
                             <li><a href="">About Us</a></li>
-                            <li><a href="">Contact Us</a></li>
+                            <li><a href="messageus">Contact Us</a></li>
                         </ul>
                     </div>
                     <div class="colsec9">

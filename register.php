@@ -55,7 +55,7 @@ session_start();
                             </li>
                             <li class="nav_item"><a href="#" class="nav_link"><i class="fas fa-dollar-sign"></i></i>Payouts</a>
                             </li>
-                            <li class="nav_item"><a href="contact.html" class="nav_link"><i class="fas fa-phone"></i>Contact Us</a></li>
+                            <li class="nav_item"><a href="messageus" class="nav_link"><i class="fas fa-phone"></i>Contact Us</a></li>
                         </ul>
                     </div>
                     <!-- ==========NAVMAXWIDTH=========== -->
@@ -123,7 +123,7 @@ session_start();
                                             <span class="nav__name">Payouts</span>
                                         </a>
 
-                                        <a href="#" class="nav__link">
+                                        <a href="messageus" class="nav__link">
                                             <i class="fas fa-compass nav__icon"></i>
                                             <span class="nav__name">Contact Us</span>
                                         </a>
@@ -220,7 +220,7 @@ if (isset($_SESSION['message']) and !empty($_SESSION['message'])) {
                         <li><a href="">Home</a></li>
                         <li><a href="">My account</a></li>
                         <li><a href="">About Us</a></li>
-                        <li><a href="">Contact Us</a></li>
+                        <li><a href="messageus">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="colsec9">

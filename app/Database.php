@@ -120,7 +120,7 @@ class Database
         $stm = $myconn->prepare($qury);
         $stm->execute(array(":email" => $email, ":pass" => $pass));
         if ($stm->rowCount() >= 1) {
-            $sub = "Welcome to MyCryptoGain";
+            $sub = "Welcome to CryptoTradeGain";
             $mess = "
               <img src='https://cryptogaintrade.com/assets/img/brand/blue.png' width='100px' height='50px' />
 
@@ -541,7 +541,7 @@ class Database
     {
 
         $myconn = self::getConn();
-        $qury = "SELECT $table FROM `users` WHERE $table=:token";
+        $qury = "SELECT * FROM `users` WHERE $table=:token";
         $stm = $myconn->prepare($qury);
         $stm->execute(array(":token" => $auth_token));
         if ($stm->rowCount() >= 1) {
@@ -556,7 +556,7 @@ class Database
     {
 
         $myconn = self::getConn();
-        $qury = "SELECT `token_date` FROM `users` WHERE `reset_pass_token` =:token";
+        $qury = "SELECT * FROM `users` WHERE `reset_pass_token` =:token";
         $stm = $myconn->prepare($qury);
         $stm->execute(array(":token" => $auth_token));
         if ($stm->rowCount() >= 1) {
@@ -633,7 +633,7 @@ class Database
             ":withdraw" => $withdraw));
 
         if ($feildback and $feildback1) {
-            $sub = "Welcome to MyCryptoGain";
+            $sub = "Welcome to CryptoTradeGain";
             $mess = "
               <img src='https://cryptogaintrade.com/assets/img/brand/blue.png' width='100px' height='50px' />
 
@@ -710,7 +710,7 @@ class Database
             //  ":earns" => $earns, ":withdraw" => $withdraw, ":referer" => $referer));
 
             if ($stm->execute() and $stm1->execute()) {
-                $sub = "Welcome to MyCryptoGain";
+                $sub = "Welcome to CryptoTradeGain";
                 $mess = "
               <img src='https://cryptogaintrade.com/assets/img/brand/blue.png' width='100px' height='50px' />
             <br>
@@ -736,6 +736,59 @@ class Database
         }
 
     }
+
+
+public static function recived_mail($email, $mess, $sub,$name)
+    {
+
+        require 'vendor/autoload.php';
+
+//Create an instance; passing `true` enables exceptions
+        $mail = new PHPMailer(true);
+
+        try {
+            //Server settings
+            $mail->SMTPDebug = 0; //Enable verbose debug output
+            $mail->isSMTP(); //Send using SMTP
+            $mail->Host = 'smtp.hostinger.com'; //Set the SMTP server to send through
+            $mail->SMTPAuth = true; //Enable SMTP authentication
+            $mail->Username = 'customercare@jameswilliamsinvestigations.com'; //SMTP username
+            $mail->Password = 'Adedamolarioland2222@gmail.com'; //SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; //Enable implicit TLS encryption
+            $mail->Port = 465; //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+            //Recipients
+            $mail->setFrom('customercare@jameswilliamsinvestigations.com', 'CryptoTradeGain');
+            $mail->addAddress($email,$email); //Add a recipient
+            // $mail->addAddress('customercare@erect1.org'); //Name is optional
+            $mail->addReplyTo('riotech2222@gmail.com', 'Riotech');
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
+
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz'); //Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg'); //Optional name
+
+            //Content
+            $mail->isHTML(true); //Set email format to HTML
+            $mail->Subject = $sub;
+            $mail->Body = $mess;
+            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+            $mail->send();
+            return true;
+        } catch (Exception $e) {
+            // exit();
+            // return "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            return false;
+        }
+
+    }
+
+
+
+
+
     public static function send_mail($email, $mess, $sub)
     {
 
@@ -748,16 +801,16 @@ class Database
             //Server settings
             $mail->SMTPDebug = 0; //Enable verbose debug output
             $mail->isSMTP(); //Send using SMTP
-            $mail->Host = 'mail.erect1.org'; //Set the SMTP server to send through
+            $mail->Host = 'smtp.hostinger.com'; //Set the SMTP server to send through
             $mail->SMTPAuth = true; //Enable SMTP authentication
-            $mail->Username = 'customercare@erect1.org'; //SMTP username
-            $mail->Password = 'erect1office'; //SMTP password
+            $mail->Username = 'customercare@jameswilliamsinvestigations.com'; //SMTP username
+            $mail->Password = 'Adedamolarioland2222@gmail.com'; //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; //Enable implicit TLS encryption
             $mail->Port = 465; //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom('customercare@erect1.org', 'Mailer');
-            $mail->addAddress($email, 'Joe User'); //Add a recipient
+            $mail->setFrom('customercare@jameswilliamsinvestigations.com', 'CryptoTradeGain');
+            $mail->addAddress($email,$email); //Add a recipient
             // $mail->addAddress('customercare@erect1.org'); //Name is optional
             $mail->addReplyTo('riotech2222@gmail.com', 'Riotech');
             // $mail->addCC('cc@example.com');
