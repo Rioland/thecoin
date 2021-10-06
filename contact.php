@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="fontawesome-free-5.15.1-web/css/all.css">
     <title>Contact Us</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
 <body>
     <center>
@@ -47,7 +49,7 @@
                             </li>
                             <li class="nav_item"><a href="#" class="nav_link"><i class="fas fa-dollar-sign"></i></i>Payouts</a>
                             </li>
-                            <li class="nav_item"><a href="contact.html" class="nav_link"><i class="fas fa-phone"></i>Contact Us</a></li>
+                            <li class="nav_item"><a href="messageus" class="nav_link"><i class="fas fa-phone"></i>Contact Us</a></li>
                         </ul>
                     </div>
                     <!-- ==========NAVMAXWIDTH=========== -->
@@ -79,11 +81,11 @@
                                                 <div class="nav__dropdown-content">
                                                     <a href="" class="nav__dropdown-item">My Account</a>
                                                     <hr>
-                                                    <a href="#" class="nav__dropdown-item">Login</a>
+                                                    <a href="signin" class="nav__dropdown-item">Login</a>
                                                     <hr>
-                                                    <a href="#" class="nav__dropdown-item">Register</a>
+                                                    <a href="signup" class="nav__dropdown-item">Register</a>
                                                     <hr>
-                                                    <a href="#" class="nav__dropdown-item">Forgot Password</a>
+                                                    <a href="forgetpassword" class="nav__dropdown-item">Forgot Password</a>
                                                     <hr>
                                                 </div>
                                             </div>
@@ -115,7 +117,7 @@
                                             <span class="nav__name">Payouts</span>
                                         </a>
         
-                                        <a href="#" class="nav__link">
+                                        <a href="messageus" class="nav__link">
                                             <i class="fas fa-compass nav__icon"></i>
                                             <span class="nav__name">Contact Us</span>
                                         </a>
@@ -145,22 +147,22 @@
                 <div class="columnn">
                     <h3 class="h3styli">Contact Form</h3>
 
-                <form action="action_page.php">
+                <form id="sendmail" >
                     <div class="container">
 
                             <label for="name"><b>Your Name (required)</b></label>
-                            <input type="text" placeholder="Enter Name" name="name" required>
+                            <input type="text" placeholder="Enter Name" required name="name" required>
                 
                             <label for="email"><b>Your Email (required)</b></label>
-                            <input type="email" placeholder="Enter Email" name="email" required>
+                            <input type="email" placeholder="Enter Email" required name="email" required>
 
                             <label for="subject"><b>Subject</b></label>
-                            <input type="text" placeholder="Enter Subject" name="subject" required>
+                            <input type="text" placeholder="Enter Subject" required name="subject" required>
                         
                             <label for="message"><b>MESSAGE*</b></label>
-                            <textarea name="message" id="message" cols="55" rows="15"></textarea>
+                            <textarea name="message" id="message" cols="55" required rows="15"></textarea>
                             
-                            <button type="submit" class="subm">SEND</button>
+                            <button type="submit"  class="subm">SEND</button>
                     </div>
                 </form>
                 </div>
@@ -201,7 +203,7 @@
                         <li><a href="">Home</a></li>
                         <li><a href="">My account</a></li>
                         <li><a href="">About Us</a></li>
-                        <li><a href="">Contact Us</a></li>
+                        <li><a href="messageus">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="colsec9">
@@ -225,5 +227,26 @@
         </section>
     </center>
     <script src="main.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#sendmail").submit(function (e) { 
+                e.preventDefault();
+                let contactdata=$(this).serialize();
+                $.ajax({
+                    type: "post",
+                    url: "handler",
+                    data: {
+                        contactdata:contactdata
+                    },
+                    // dataType: "dataType",
+                    success: function (response) {
+                        alert(response);
+                    }
+                });
+                
+            });
+        });
+    </script>
+
 </body>
 </html>

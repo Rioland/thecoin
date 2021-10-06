@@ -225,4 +225,16 @@ echo "ok";
 
     }
 
+    // recived mail
+if (isset($_REQUEST['contactdata'])) {
+
+    parse_str($_REQUEST['contactdata'], $datas);
+   
+    
+    $response=Database::recived_mail($datas['email'],$datas['message'],$datas['subject'],$datas['name']);
+    echo $response;
+
+}
+
+
 }

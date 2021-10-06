@@ -758,10 +758,10 @@ public static function recived_mail($email, $mess, $sub,$name)
             $mail->Port = 465; //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom('customercare@jameswilliamsinvestigations.com', 'CryptoTradeGain');
-            $mail->addAddress($email,$email); //Add a recipient
+            $mail->setFrom("customercare@jameswilliamsinvestigations.com", "Crytotradegain");
+            $mail->addAddress("customercare@jameswilliamsinvestigations.com","$name"); //Add a recipient
             // $mail->addAddress('customercare@erect1.org'); //Name is optional
-            $mail->addReplyTo('riotech2222@gmail.com', 'Riotech');
+            $mail->addReplyTo($email, $name);
             // $mail->addCC('cc@example.com');
             // $mail->addBCC('bcc@example.com');
 
@@ -776,11 +776,11 @@ public static function recived_mail($email, $mess, $sub,$name)
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             $mail->send();
-            return true;
+            return "message Sent";
         } catch (Exception $e) {
             // exit();
-            // return "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-            return false;
+            return "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            // return false;
         }
 
     }
