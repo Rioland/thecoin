@@ -24,14 +24,14 @@
         
                     <div class="navminwidth">
                         <ul class="nav_list">
-                            <li class="nav_item active"><a href="#" class="nav_link"><i class="fas fa-home"></i>Home</a></li>
+                            <li class="nav_item active"><a href="home" class="nav_link"><i class="fas fa-home"></i>Home</a></li>
                             <li class="nav_item"><a href="#" class="nav_link"><i class="fas fa-clone"></i>Account</a>
                                 <div class="sub-menu-1">
                                     <ul>
                                         <li><a href="#" class="sub-style">My Account</a></li>
-                                        <li><a href="login.html" class="sub-style">Login</a></li>
-                                        <li><a href="registration.html" class="sub-style">Register</a></li>
-                                        <li><a href="#" class="sub-style">Forgot Password</a></li>
+                                        <li><a href="signin" class="sub-style">Login</a></li>
+                                        <li><a href="signup" class="sub-style">Register</a></li>
+                                        <li><a href="" class="sub-style">Forgot Password</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -40,7 +40,7 @@
                                     <ul>
                                         <li><a href="aboutus.html" class="sub-style">About Us</a></li>
                                         <li><a href="#" class="sub-style">Testimonials</a></li>
-                                        <li><a href="pivacypolicy.html" class="sub-style">Privacy Policy</a></li>
+                                        <li><a href="#" class="sub-style">Privacy Policy</a></li>
                                         <li><a href="Terms.html" class="sub-style">Terms And Conditions</a></li>
                                     </ul>
                                 </div>
@@ -79,7 +79,7 @@
                                                     <a href="" class="nav__dropdown-item">My Account</a><hr>
                                                     <a href="#" class="nav__dropdown-item">Login</a><hr>
                                                     <a href="#" class="nav__dropdown-item">Register</a><hr>
-                                                    <a href="#" class="nav__dropdown-item">Forgot Password</a><hr>
+                                                    <a href="forgetpassword" class="nav__dropdown-item">Forgot Password</a><hr>
                                                 </div>
                                             </div>
                                         </div>
@@ -129,8 +129,8 @@
         <section class="sec1">
             <h2 class="wordings">Maximium Profits From Crypto Trade</h2>
             <div class="buttss">
-                <button class="butt1">Register</button>
-                <button class="butt2">Login</button>
+                <a href="signup"> <button class="butt1">Register</button></a> 
+              <a href="signin"> <button class="butt2">Login</button></a>  
             </div>
         </section>
 

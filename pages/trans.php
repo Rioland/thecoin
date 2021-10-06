@@ -19,7 +19,7 @@
 margin:4px, 4px;
                 padding:4px;
                 background-color: wheat;
-                
+
                 height: 70%;
                 overflow-x: hidden;
                 overflow-y: auto;
@@ -27,7 +27,7 @@ margin:4px, 4px;
 
 ">
 
-
+<h3>Invoice</h3>
     <table class="table table-dark">
             <thead class="thead-light">
                 <tr>
@@ -47,23 +47,39 @@ $stm = $con->prepare("SELECT * FROM `invoices` WHERE `uid`=:id");
 $stm->bindParam(":id", $id);
 $stm->execute();
 // echo $stm->rowCount();
-if ($stm->rowCount()>0) {
-    for ($i=0; $i < $stm->rowCount(); $i++) { 
-       $row=$stm->fetch();
-    //    echo $i;
-?>
+if ($stm->rowCount() > 0) {
+    for ($i = 0; $i < $stm->rowCount(); $i++) {
+        $row = $stm->fetch();
+        //    echo $i;
+        ?>
                 <tr>
-                  <td><?php echo $i  ?></td>  
-                  <td><?php echo $row->address;  ?></td>  
-                  <td><?php echo "USD". $row->price;  ?></td>  
-                  <td><?php echo $row->code ; ?></td>  
-                  <td><?php echo $row->status ;?></td>  
+                  <td><?php echo $i ?></td>
+                  <td><?php echo $row->address; ?></td>
+                  <td><?php echo "USD" . $row->price; ?></td>
+                  <td><?php echo $row->code; ?></td>
+                  <?php
+
+        if ($row->status == -1) {
+            echo "<td>Unpaid</td>";
+        }
+        if ($row->status == 2) {
+            echo "<td>Comfirmed</td>";
+        }
+        if ($row->status == 0) {
+            echo "<td>UnConfirmed</td>";
+        }
+        if ($row->status == 1) {
+            echo "<td>Partially Confirmed,</td>";
+        }
+        ;
+        ?>
+
+
                 </tr>
 
 
                 <?php
 
-       
     }
 }
 ?>
