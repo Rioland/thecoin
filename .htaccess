@@ -9,4 +9,3 @@ RewriteRule ^about Terms.php [NC]
 RewriteRule ^logout logout.php [NC]
 RewriteRule ^forgetpassword forgotpw.php [NC]
 RewriteRule ^messageus contact.php [NC]
-contact.php
