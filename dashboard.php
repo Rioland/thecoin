@@ -12,6 +12,18 @@ $referer = Database::getRefererBalance();
 $pic = Database::getPicture();
 $btcprice = Database::getBTCPrice("USD");
 $id=$_SESSION["userid"];
+$reffer=Database::getRefferCode();
+
+if($reffer==null){
+    $codgen=Database::generateRefferCode();
+$quy="UPDATE `users` SET `referer_code`=:rf WHERE `id`=:id";
+$param=array(":rf"=>$codgen,":id"=>$id);
+if(Database::SetQuery($quy,$param)){
+    $reffer = Database::getRefferCode();
+}else{
+    echo"<script>alert('error occoe');</script>";
+}
+}
 // $usdtobtc=Database::USDtoBTC();
 
 // session_start();

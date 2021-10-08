@@ -17,52 +17,62 @@ $userdata = Database::getUserDetails();
         </div>
         <!-- <form action="handler" method="post"> -->
         <div class="col-md-5 border-right">
-             <form method="post" id="user-update-form">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right">Profile Settings</h4>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Name</label>
-                    <input  type="text" class="form-control" style="text-align: start;" name="fname" placeholder="first name" value="<?php print(trim($userdata->name));?>">
-                </div>
+            <form method="post" id="user-update-form">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Profile Settings</h4>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">Name</label>
+                            <input type="text" class="form-control" style="text-align: start;" name="fname"
+                                placeholder="first name" value="<?php print(trim($userdata->name));?>">
+                        </div>
 
-                    <div class="col-md-6"><label class="labels">Last name</label>
-                    <input name="lname" style="text-align: start;" type="text" class="form-control" 
-                            value="<?php print(trim($userdata->last_name));?>" placeholder="Last name"></div>
+                        <div class="col-md-6"><label class="labels">Last name</label>
+                            <input name="lname" style="text-align: start;" type="text" class="form-control"
+                                value="<?php print(trim($userdata->last_name));?>" placeholder="Last name">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Mobile Number</label>
+                            <input style="text-align: start;" name="phone" type="text" class="form-control"
+                                placeholder="enter phone number" value="<?php print(trim($userdata->phone));?>">
+                        </div>
+                        <div class="col-md-12"><label class="labels">Address Line 1</label><input name="address1"
+                                type="text" class="form-control" placeholder="enter address line 1"
+                                value="<?php print(trim($userdata->address1));?>"></div>
+
+                        <div class="col-md-12"><label class="labels">Address Line 2</label>
+                            <input name="address2" type="text" class="form-control" placeholder="enter address line 2"
+                                value="<?php print(trim($userdata->address2));?>">
+                        </div>
+                        <div class="col-md-12"><label class="labels">Postcode</label><input name="pcode" type="text"
+                                class="form-control" placeholder="enter address line 2"
+                                value="<?php print(trim($userdata->poster_code));?>"></div>
+                        <!-- <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div> -->
+                        <div class="col-md-12"><label class="labels">City</label><input name="city" type="text"
+                                class="form-control" placeholder="enter address line 2"
+                                value="<?php print(trim($userdata->city));?>"> </div>
+                        <div class="col-md-12"><label class="labels">Email ID</label><input name="email" type="text"
+                                class="form-control" placeholder="enter email id" readonly="true"
+                                value="<?php print(trim($userdata->email));?>"></div>
+                        <div class="col-md-12"><label class="labels">Gender</label><input name="gender" type="text"
+                                class="form-control" placeholder="Gender"
+                                value="<?php print(trim($userdata->gender));?>"></div>
+                    </div>
+                    <!-- <input type="hidden" name="update-user" value="update-user"> -->
+                    <div class="row mt-3">
+                        <div class="col-md-6"><label class="labels">Country</label><input name="ctry" type="text"
+                                class="form-control" placeholder="country"
+                                value="<?php print(trim($userdata->country));?>"></div>
+                        <div class="col-md-6"><label class="labels">State/Region</label><input name="state" type="text"
+                                class="form-control" value="<?php print(trim($userdata->state));?>" placeholder="state">
+                        </div>
+                    </div>
+                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save
+                            Profile</button></div>
                 </div>
-                <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">Mobile Number</label>
-                    <input style="text-align: start;" name="phone" type="text"
-                            class="form-control" placeholder="enter phone number" value="<?php print(trim($userdata->phone));?>" >
-                </div>
-                    <div class="col-md-12"><label class="labels">Address Line 1</label><input  name="address1" type="text"
-                            class="form-control" placeholder="enter address line 1" value="<?php print(trim($userdata->address1));?>"></div>
-                    
-                            <div class="col-md-12"><label class="labels">Address Line 2</label>
-                            <input name="address2" type="text"
-                            class="form-control"  placeholder="enter address line 2" value="<?php print(trim($userdata->address2));?>"></div>
-                    <div class="col-md-12"><label class="labels">Postcode</label><input name="pcode" type="text" class="form-control"
-                            placeholder="enter address line 2"  value="<?php print(trim($userdata->poster_code));?>" ></div>
-                    <!-- <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div> -->
-                    <div class="col-md-12"><label class="labels">City</label><input name="city" type="text" class="form-control"
-                            placeholder="enter address line 2" value="<?php print(trim($userdata->city));?>" > </div>
-                    <div class="col-md-12"><label class="labels">Email ID</label><input name="email" type="text" class="form-control"
-                            placeholder="enter email id" readonly="true"  value="<?php print(trim($userdata->email));?>"></div>
-                    <div class="col-md-12"><label class="labels">Gender</label><input name="gender" type="text"  class="form-control"
-                            placeholder="Gender" value="<?php print(trim($userdata->gender));?>"></div>
-                </div>
-                <!-- <input type="hidden" name="update-user" value="update-user"> -->
-                <div class="row mt-3">
-                    <div class="col-md-6"><label class="labels">Country</label><input name="ctry" type="text"  class="form-control"
-                            placeholder="country" value="<?php print(trim($userdata->country));?>"></div>
-                    <div class="col-md-6"><label class="labels">State/Region</label><input name="state" type="text" 
-                            class="form-control" value="<?php print(trim($userdata->state));?>" placeholder="state"></div>
-                </div>
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save
-                        Profile</button></div>
-            </div>
-            </form> 
+            </form>
         </div>
         <!-- </form> -->
         <!-- <form action="handler" method="post"> -->
@@ -118,6 +128,50 @@ $userdata = Database::getUserDetails();
                 </form>
             </div>
 
+
+            <!-- referre -->
+            <div class="p-3 py-5">
+                <form method="post" id="refer-update-form">
+                    <input type="hidden" name="update-reffer" value="update-reffer">
+                    <?php 
+                     $refby = Database::RefBy();
+
+                    if($refby==null){
+                
+                        ?>
+                    <div class="d-flex justify-content-between align-items-center experience"><span>Refferer
+                            Mode</span><span class="border px-3 p-1 add-experience">
+                            <i class="fa fa-plus"></i>&nbsp;
+                            <button class="btn btn-primary profile-button" name="update-refer" value="update-refer"
+                                type="submit">Save
+                            </button>
+
+                        </span></div>
+                    <?php
+                    } 
+                    
+                    ?>
+
+
+                    <br>
+                    <div class="col-md-12"><label class="labels">My Refferer Code</label><input type="text"
+                            class="form-control" placeholder="My Refferer Code" readonly value="<?php echo $reffer; ?>">
+                    </div> <br>
+                    <div class="col-md-12"><label class="labels">Refferer By</label><input type="text" id="rb"
+                            class="form-control" placeholder="Refferer By" required value="<?php  echo $refby; ?>" name="rb"></div>
+                            <br>
+                               <label >
+                               <?php
+if (isset($_SESSION['message']) and !empty($_SESSION['message'])) {
+    echo @$_SESSION['message'];
+    @$_SESSION['message'] = "";
+}
+
+?>
+                        </label>
+                </form>
+            </div>
+
             <!-- </form> -->
         </div>
 
@@ -131,8 +185,8 @@ $userdata = Database::getUserDetails();
 <script>
 $(document).ready(function() {
 
-// update user
-$("#user-update-form").submit(function(e) {
+    // update user
+    $("#user-update-form").submit(function(e) {
         e.preventDefault();
         var formValues = $(this).serialize();
         // alert(formValues);
@@ -140,8 +194,8 @@ $("#user-update-form").submit(function(e) {
             type: "post",
             url: "handler",
             data: {
-                data:formValues,
-                add:"mtt"
+                data: formValues,
+                add: "mtt"
             },
             success: function(response) {
                 alert(response);
@@ -192,7 +246,7 @@ $("#user-update-form").submit(function(e) {
 
 
 
-        }else{
+        } else {
             alert("password not match")
         }
 

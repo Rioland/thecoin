@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 05, 2021 at 04:13 PM
+-- Generation Time: Oct 06, 2021 at 03:46 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -56,6 +56,13 @@ CREATE TABLE `address` (
   `address` varchar(255) NOT NULL,
   `method` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `address`
+--
+
+INSERT INTO `address` (`sn`, `id`, `address`, `method`) VALUES
+(1, '3461693015', '1qnnnsjjj356353652356237725353', 'BCH');
 
 -- --------------------------------------------------------
 
@@ -256,7 +263,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`sn`, `id`, `email`, `password`, `country`, `auth_token`, `reset_pass_token`, `token_date`, `is_verify`, `name`, `picture`, `phone`, `gender`, `created_at`, `last_name`, `address1`, `address2`, `poster_code`, `state`, `city`) VALUES
-(3, '3461693015', 'riolandadedamola@gmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 'Unknown', '#4bkxi86up3@m1ysag7qedvf0925cjlrtownhz', NULL, NULL, NULL, 'Adedamola', 'iMarket.png', '08149916721', NULL, '2021-10-01 13:21:56', 'Emmanuel', NULL, NULL, NULL, NULL, NULL);
+(3, '3461693015', 'riolandadedamola@gmail.com', '1111111', 'Nigeria', '#4bkxi86up3@m1ysag7qedvf0925cjlrtownhz', NULL, NULL, NULL, 'Rioland', 'iMarket.png', '08149916721', 'male', '2021-10-01 13:21:56', 'Adedamola', 'no7 okeyimi street Ado Ekiti', 'Okeyinmi', '360211', 'Ekiti', 'Ado');
 
 -- --------------------------------------------------------
 
@@ -281,13 +288,15 @@ CREATE TABLE `withdraw` (
 -- Indexes for table `account`
 --
 ALTER TABLE `account`
-  ADD PRIMARY KEY (`sn`);
+  ADD PRIMARY KEY (`sn`),
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indexes for table `address`
 --
 ALTER TABLE `address`
-  ADD PRIMARY KEY (`sn`);
+  ADD PRIMARY KEY (`sn`),
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indexes for table `apis`
@@ -323,7 +332,8 @@ ALTER TABLE `plans`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`sn`);
+  ADD PRIMARY KEY (`sn`),
+  ADD UNIQUE KEY `email` (`email`) USING HASH;
 
 --
 -- Indexes for table `withdraw`
@@ -345,7 +355,7 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `apis`

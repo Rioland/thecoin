@@ -36,6 +36,9 @@ class Database
         }
     }
 
+
+
+
     public static function updateInvoiceStatus($status, $address)
     {
         $myconn = self::getConn();
@@ -149,6 +152,72 @@ class Database
         return false;
 
     }
+    public static function generateRefferCode()
+    {
+        $t = "".time();
+        $lent = strlen($t);
+        $reffer = 'CTG_' . substr($t, ($lent / 2), $lent);
+
+        return $reffer;
+
+    }
+
+    public static function getRefferCode()
+    {
+        $myconn = self::getConn();
+        $id = $_SESSION["userid"];
+        $qury = "SELECT * FROM `users` WHERE id=:id";
+        $stm = $myconn->prepare($qury);
+        $stm->execute(array(":id" => $id));
+        if ($stm->rowCount() >= 1) {
+            $res = $stm->fetch();
+            return $res->referer_code;
+        } else {
+            return null;
+        }
+
+    }
+
+    
+
+
+  public static function GetQuery($query,$param=array())
+    {
+        $myconn = self::getConn();
+        $stm = $myconn->prepare($query);
+        $stm->execute($param);
+        if ($stm->rowCount() >= 1) {
+            $res = $stm->fetch();
+            return $res;
+        } else {
+            return null;
+        }
+
+    }
+public static function RefBy(){
+    $id = $_SESSION["userid"];
+
+$q="SELECT * FROM `users` WHERE `id`=:id";
+$param=array(":id"=>$id);
+  $res=self::GetQuery($q,$param);
+  return $res->ref_by;
+}
+
+     public static function SetQuery($query,$param=array())
+    {
+        $myconn = self::getConn();
+        $stm = $myconn->prepare($query);
+        $stm->execute($param);
+        if ($stm->rowCount() >= 1) {
+            $res = $stm->fetch();
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+
     public static function getConn()
     {
 
@@ -158,7 +227,7 @@ class Database
         // $servername = "localhost";
         // $username = "root";
         // $password = "";
-// db=sql5440458
+        // db=sql5440458
 
         try {
             $conn = new PDO("mysql:host=$servername;dbname=sql5440458", $username, $password);
@@ -603,7 +672,7 @@ class Database
 
     public static function generate_token()
     {
-        return str_shuffle("1234678905abcdefghijklmnopqrstuvwzyx@#");
+        return str_shuffle("1234567890");
     }
 
     public static function google_register($name, $email, $pass, $country, $pic, $gender, $id): bool
@@ -737,8 +806,7 @@ class Database
 
     }
 
-
-public static function recived_mail($email, $mess, $sub,$name)
+    public static function recived_mail($email, $mess, $sub, $name)
     {
 
         require 'vendor/autoload.php';
@@ -759,7 +827,7 @@ public static function recived_mail($email, $mess, $sub,$name)
 
             //Recipients
             $mail->setFrom("customercare@jameswilliamsinvestigations.com", "Crytotradegain");
-            $mail->addAddress("customercare@jameswilliamsinvestigations.com","$name"); //Add a recipient
+            $mail->addAddress("customercare@jameswilliamsinvestigations.com", "$name"); //Add a recipient
             // $mail->addAddress('customercare@erect1.org'); //Name is optional
             $mail->addReplyTo($email, $name);
             // $mail->addCC('cc@example.com');
@@ -785,10 +853,6 @@ public static function recived_mail($email, $mess, $sub,$name)
 
     }
 
-
-
-
-
     public static function send_mail($email, $mess, $sub)
     {
 
@@ -810,7 +874,7 @@ public static function recived_mail($email, $mess, $sub,$name)
 
             //Recipients
             $mail->setFrom('customercare@jameswilliamsinvestigations.com', 'CryptoTradeGain');
-            $mail->addAddress($email,$email); //Add a recipient
+            $mail->addAddress($email, $email); //Add a recipient
             // $mail->addAddress('customercare@erect1.org'); //Name is optional
             $mail->addReplyTo('riotech2222@gmail.com', 'Riotech');
             // $mail->addCC('cc@example.com');
